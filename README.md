@@ -1,7 +1,13 @@
-Team Members
+# SOEN 343 Project
 
-Ahmad Hyjaz Loudin	
-Emir Bozer
-Leo Yu
-Nikolas Dvb 
-Ma ry 
+This is the repository that contains the code, documentation, issues and much more related to reserving a room.
+
+
+
+## Team Members
+
+Ahmad Hyjaz Loudin <br />
+Emir Bozer <br />
+Leo Yu <br />
+Nikolas Dvb <br />
+Ma ry <br />
