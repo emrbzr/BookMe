@@ -2,8 +2,15 @@
 <html>
 <head>
 	<title>Reservation.com</title>
+	<h1>Welcome abord</h1>
 </head>
 <body>
-<h1>Welcome abord</h1>
+<h1>Please login</h1><br>
+<form action="" method="POST">
+	<input type="text" placeholder="Username" name="username" value={{request.form.username}}"">
+	<input type="password" placeholder="Password" name="password" value="{{request.form.password}}">
+	<input type="submit" name="login" value="Login">
+</form>
+
 </body>
 </html>
