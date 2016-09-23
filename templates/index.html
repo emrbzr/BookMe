@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Reservation.com</title>
-	<h1>Welcome abord</h1>
-</head>
-<body>
-<h1>Please login</h1><br>
-<p>click here to <a href="/login">Login</a></p>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/normalize.css') }}">
+    <script src="js/prefixfree.min.js"></script> 
+    <script type=text/javascript src="{{
+  url_for('static', filename='javascript/prefixfree.min.js') }}"></script>
+  </head>
 
-</body>
+  <body>
+
+    <div class="login">
+	<h1>Login</h1>
+    <form method="post">
+    	<input type="text" name="username" placeholder="Username" required="required" value="{{request.form.username}}"/>
+        <input type="password" name="password" placeholder="Password" required="required" value="{{request.form.password}}"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large" value="Login">Log In</button>
+    </form>
+</div>
+        
+  </body>
 </html>

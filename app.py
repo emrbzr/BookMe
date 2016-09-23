@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 from flask import Flask, render_template, request, url_for, redirect, session, flash
 from functools import wraps
 
@@ -19,11 +18,8 @@ def login_required(f):
 
 @app.route('/')
 def home():
-	return render_template('index.html')
+	return redirect(url_for('index'))
 
-@app.route('/login')
-def signin():
-	return render_template('login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def index():
