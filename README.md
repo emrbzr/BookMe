@@ -8,7 +8,7 @@ This is the repository that contains the code, documentation, issues and much mo
 -follow this <a href="http://flask.pocoo.org/docs/0.11/installation/">Flask installation</a><br />
 
 Finally to activate the venv:<br />
-cd to project directory<<br />
+cd to project directory<br />
 source venv/bin/activate<br />
 
 <h2>To start server</h2>
