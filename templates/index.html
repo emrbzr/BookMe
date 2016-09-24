@@ -11,14 +11,18 @@
 
   <body>
 
-    <div class="login">
-	<h1>Login</h1>
+  <div class="login">
+	 <h1>Login</h1>
     <form method="post">
     	<input type="text" name="username" placeholder="Username" required="required" value="{{request.form.username}}"/>
         <input type="password" name="password" placeholder="Password" required="required" value="{{request.form.password}}"/>
         <button type="submit" class="btn btn-primary btn-block btn-large" value="Login">Log In</button>
     </form>
-</div>
-        
+    <a style="margin-top:5%; text-decoration:none;" class="btn btn-primary btn-block btn-large" href="{{url_for('getRegister') }}">Register</a>
+   {% if error %}
+    <p class="error"><strong>Error:</strong>{{ error }}</p>
+    {% endif %}
+  </div>
+ 
   </body>
 </html>
