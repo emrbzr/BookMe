@@ -11,10 +11,28 @@ Finally to activate the venv:<br />
 cd to project directory<br />
 source venv/bin/activate<br />
 
+<h2>Database guide</h2>
+Install <a href="https://www.postgresql.org/download/">postgresql</a><br />
+install psycopg2 on the venv, the installation of this depends on your os<br />
+<h3>Mac osX</h3>
+install <a href="http://brew.sh/">brew</a>
+insert the following command on your terminal: <br />
+$ brew install postgresql<br />
+then in your venv enter the following command on your terminal:<br />
+$ pip install psycopg2 <br />
+<h3>Windows</h3>
+go into the project directory<br />
+cd venv/lib/python3.5/site-packages <br />
+pip install psycopg2-2.6.1-cp35-none-win32.whl<br />
+
+<h3>Create reservation database through the postgresl GUI</h3>
+Insert user and pass seperate by ":" -> app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost/reservation'<br />
+
 <h2>To start server</h2>
-python app.py
+$ python app.py <br />
 
-
+<h2>to deactivate server</h2>
+$ deactivate <br />
 
 ## Team Members
 
