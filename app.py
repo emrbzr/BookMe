@@ -4,7 +4,7 @@ from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
-app.secret_key = "secret"
+app.secret_key = "b',|V\xa2^\xf8y%/\xee\x81\x91\xe6\xba\xe3/RW\x97|k:\xa0\x1f'"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Intel1234@localhost/reservation'
 db = SQLAlchemy(app)
@@ -23,11 +23,16 @@ class User(db.Model):
 # adding user to table user into database Reservation
 @app.route('/post_user', methods=['POST'])
 def post_user():
+	userexists = "Username already in use."
+	checkuser = User.query.filter(db.or_(User.username == request.form['username'])).first()
+	if not checkuser:
+		user = User(request.form['username'], request.form['password'])
+		db.session.add(user)
+		db.session.commit()
+		return render_template('reservation.html')
+	else:
+		return render_template('register.html', userexists=userexists)
 
-	user = User(request.form['username'], request.form['password'])
-	db.session.add(user)
-	db.session.commit()
-	return render_template('reservation.html')
 
 # login required
 def login_required(f):
@@ -51,7 +56,7 @@ def getRegister():
 	return render_template('register.html')
 
 # render reservation template if login with correct credentials
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def index():
 	error = 'Invalid credentials. Please try again'
 	if request.method == 'POST':
