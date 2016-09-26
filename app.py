@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app.secret_key = "b',|V\xa2^\xf8y%/\xee\x81\x91\xe6\xba\xe3/RW\x97|k:\xa0\x1f'"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Intel1234@localhost/reservation'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:yourpassword4@localhost/development'
 db = SQLAlchemy(app)
 
 # user schema
