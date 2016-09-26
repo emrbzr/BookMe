@@ -30,8 +30,8 @@ pip install psycopg2-2.6.1-cp35-none-win32.whl<br />
 <h3>Create reservation database through the postgresl GUI</h3>
 Insert user and pass seperate by ":" -> app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost/development'<br />
 $ python<br />
->>> from app import db<br />
->>> db.create_all()<br />
+\>\>\> from app import db<br />
+\>\>\> db.create_all()<br />
 
 <h2>To start server</h2>
 $ python app.py <br />
