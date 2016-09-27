@@ -1,16 +1,32 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request, url_for, redirect, session, flash, Blueprint
-from functools import wraps
+from flask import Flask, render_template, request, url_for, redirect, session, flash, Blueprint, make_response
+from functools import wraps, update_wrapper
 from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
+import os
+from flask.ext.cache import Cache
+from datetime import datetime
 
-app.secret_key = "b',|V\xa2^\xf8y%/\xee\x81\x91\xe6\xba\xe3/RW\x97|k:\xa0\x1f'"
+
+app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Intel1234@localhost/development'
 db = SQLAlchemy(app)
 
-# user schema
+#no cache
+def nocache(view):
+    @wraps(view)
+    def no_cache(*args, **kwargs):
+        response = make_response(view(*args, **kwargs))
+        response.headers['Last-Modified'] = datetime.now()
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '-1'
+        return response
 
+    return update_wrapper(no_cache, view)
+
+# user schema
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(), unique=True)
@@ -57,6 +73,7 @@ def getRegister():
 
 # render reservation template if login with correct credentials
 @app.route('/login', methods=['GET', 'POST'])
+
 def index():
 	error = 'Invalid credentials. Please try again'
 	if request.method == 'POST':
@@ -76,11 +93,13 @@ def index():
 @app.route('/logout')
 def logout():
 	session.pop('logged_in', None)
+	session.clear()
 	return redirect(url_for('home'))
 
 # render reservation
 @app.route('/reservation')
-@login_required
+@login_required 
+@nocache
 def reservation():
 		return render_template('reservation.html')
 	
