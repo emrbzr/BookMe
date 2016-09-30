@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, session, make_response,flash
+from flask import render_template, request, url_for, redirect, session, make_response,flash
 from functools import wraps, update_wrapper
 from flask_cache import Cache
 from datetime import datetime

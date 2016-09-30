@@ -13,4 +13,4 @@ class User(db.Model):
 		self.password = password
 
 
-	
+
