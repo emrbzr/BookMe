@@ -12,6 +12,9 @@ def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
 
+@app.route('/')
+def home():
+	return redirect(url_for('index'))
 #login
 @app.route('/login', methods=['GET', 'POST'])
 def index():
