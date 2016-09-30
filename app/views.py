@@ -25,7 +25,7 @@ def index():
 		if user:
 			if password:
 				session['logged_in'] = True
-				return redirect(url_for('reservation'))
+				return redirect(url_for('dashboard',user=request.form['username']))
 			else:
 				return render_template('login.html',error=error)
 		else:
@@ -40,9 +40,9 @@ def logout():
 	return redirect(url_for('index'))
 
 #reservation
-@app.route('/reservation')
+@app.route('/dashboard')
 @login_required 
 @nocache
-def reservation():
+def dashboard():
 		return render_template('reservation.html')
 	
