@@ -1,6 +1,5 @@
 <div id="modal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -24,23 +23,114 @@
               <p style="color: #333; font-weight: bold;">You can only reserve the room for 2 consecutive hours.</p><br>
               <p style="color: #333; font-weight: bold;"><font color="red">Warning: You have 2 minutes to complete the reservation</font> .</p>
               <br>
+              <p style="color: #333; font-weight: bold;">Please enter a short description of your reservation.</p>
+              <input type="text" id="myText" value="">
             </div>
           </div>
-          <?php
-            for ($b = 0; $b < 10; $b++) {
-          ?>
-              <!-- Looped for now, i'll breake the loop make it static for each so we can dynamically import python -->
-              <div class="row-fluid">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
-                  <p style="color: #333; font-weight: bold;">Times 0:0</p>
-                </div>
-                <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
-                  <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
-                </div>
-              </div>
-          <?php
-            }
-          ?>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 09:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 10:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 11:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 12:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 13:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 14:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 15:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 16:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 17:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 18:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 19:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 20:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold;">Times 21:00</p>
+            </div>
+            <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
+              <p style="color: #333; font-weight: bold; float: left;">Availability</p><span class="text-right" style="float: right; font-weight: bolder; color: red; cursor: pointer;">X</span>
+            </div>
+          </div>
         </div>
         <br><br>
         <div class="row">

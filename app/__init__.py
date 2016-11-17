@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
 #create app
 app = Flask(__name__)
 #connect to config.py
