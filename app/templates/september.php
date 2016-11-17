@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>November Reservation</title>
+    <title>September Reservation</title>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="CustomCss/Content.css">
+   <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/styles/Content.css">
 
     <!--[if lt IE 9]-->
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -22,7 +21,7 @@
 
       <!-- Page Heading -->
       <div class="page-header text-center">
-        <h1>Reservation for November</h1>
+        <h1>Reservation for September</h1>
       </div>
       <div id="textcolorcorrector" class="row-fluid">
         <div class="text-center">Please Click on the Day</div>
@@ -69,23 +68,22 @@
 
       <br><br><br><br><br>
 
-      <div class="row-fluid">
+    <div class="row-fluid">
         <div class="panel panel-default col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
           <div id="linksending" class="panel-body">
             <div style="border-right: 1px solid #ddd;" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
-              <a href="month.php">Go Back</a>
+              <a href="/month">Go Back</a>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
-              <a href="logout.php">Logout : Emir</a>
+              <a href="/logout">Logout : Emir</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- For Fast Loading Of Scripts -->
-    <script src="JQuery/js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/javascript/jquery.min.js"></script>
+    <script src="../static/javascript/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(function(){
         $("#month .divider").mouseenter(function(){

@@ -3,24 +3,19 @@
   <head>
     <meta charset="UTF-8">
     <title>Reservation</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/normalize.css') }}">
-    <script src="js/prefixfree.min.js"></script> 
-    <script type=text/javascript src="{{
-  url_for('static', filename='javascript/prefixfree.min.js') }}"></script>
+    <link rel="stylesheet" href="../static/styles/normalize.css">
+    <script type=text/javascript src="../static/javascript/prefixfree.min.js"></script>
   </head>
 
   <body>
 
   <div class="login">
 	 <h1>Login</h1>
-    <form method="post">
+      <form method="post">
     	<input type="text" name="username" placeholder="Username" required="required" value="{{request.form.username}}"/>
         <input type="password" name="password" placeholder="Password"  required="required" value="{{request.form.password}}"/>
         <button type="submit" class="btn btn-primary btn-block btn-large" value="Login">Log In</button>
     </form>
-   {% if error %}
-    <p class="error" style="color:white;"><strong></strong>{{ error }}</p>
-    {% endif %}
   </div>
  
   </body>

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Room Reservation System</title>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/font-awesome.min.css">
 
-    <link rel="stylesheet" href="CustomCss/Content.css">
+    <link rel="stylesheet" href="../static/styles/Content.css">
 
     <!--[for IE9 support]-->
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -27,7 +27,7 @@
         <h1>My Profile</h1>
       </div>
       <div id="textcolorcorrector" class="row-fluid">
-        <div class="text-center"><h3>Welcome $Emir!</h3></div>
+        <div class="text-center"><h3>{{user}}</h3></div>
         <br>
         <div class="text-center">My Reservations:</div>
         <br>
@@ -41,7 +41,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div id="month" class="BottomPadder text-center">
-                <div class="col-md-12">Make A New Reservation</div>
+                <a class="col-md-12" style="text-decoration:none;" href=" {{ url_for('month') }}"><div>Make A New Reservation</div></a>
               </div>
             </div>
           </div>
@@ -50,8 +50,8 @@
     </div>
 
     <!-- For Fast Loading Of Scripts -->
-    <script src="JQuery/js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/javascript/jquery.min.js"></script>
+    <script src="../static/javascript/bootstrap.min.js"></script>
     <!-- Javascript function for the effect and the clicking -->
     <script type="text/javascript">
       $(function(){
@@ -66,12 +66,9 @@
         });
       });
       <!-- hiding the page adress from the bottom bar, cannot right click and copy the adress-->
-      $(".col-md-12").click(function(){
-        if($(this).html() == "Make A New Reservation")
-        {
-          window.location.href = "month.php";
-        }
-      });
+     // !$(".col-md-12").click(function(){
+        
+      //});
     </script>
     <!--[endif]-->
   </body>

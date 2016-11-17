@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Make a New Reservation</title>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
-    <link rel="stylesheet" href="CustomCss/Content.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/styles/Content.css">
 
   </head>
   <body>
@@ -59,10 +59,10 @@
         <div class="panel panel-default">
             <div id="linksending" class="panel-body">
                 <div style="border-right: 1px solid #ddd;" class="col-md-6 text-center">
-                    <a href="index.php">My Profile</a>
+                    <a href="{{ url_for('dashboard',user=session['user']) }}">My Profile</a>
                 </div>
                 <div class="col-md-6 text-center">
-                    <a href="logout.php">Logout : Emir</a>
+                    <a href="/logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -78,8 +78,8 @@
     ?>
 
     <!-- For Fast Loading Of Scripts -->
-    <script src="JQuery/js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/javascript/jquery.min.js"></script>
+    <script src="../static/javascript/bootstrap.min.js"></script>
     <!--[if lt IE 9]-->
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
