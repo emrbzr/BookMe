@@ -36,20 +36,89 @@
               <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal3">Room 3</div>
               <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal4">Room 4</div>
               <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" data-toggle="modal" data-target="#modal5">Room 5</div>
-              <?php
-                for( $a = 0; $a < 4; $a++)
-                {
-              ?>
-                    <!-- Looped for now, i'll breake the loop make it static for each so we can dynamically import python -->
-                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 00</div>
+
+
+              <!-- NOTE : WE WILL ONLY MAKE ROOM AVAILABILITY COLUMNS DYNAMIC. TIME COLUMN CAN BE HARD CODED. AND NO NEED TO GET THE VALUE
+              BECAUSE WE WILL GET THE TIME VALUE IN THE MODAL PAGE(AKA POPUP) YOU CAN DELETE THIS COMMENT AFTER YOUR READ IT HYJAZ LOL-->
+
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 09.00</div>
                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
-              <?php
-                }
-              ?>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 10:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 11:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 12:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 13:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 14:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 15:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 16:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 17:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 18:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 19:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 20:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 21:00</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
           </div>
         </div>
       </div>
