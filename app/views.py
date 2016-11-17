@@ -50,7 +50,6 @@ def dashboard(user):
 
 @app.route('/month')
 def month():
-	session.clear()
 	return render_template('month.php')
 
 @app.route('/january')
