@@ -9,9 +9,9 @@ from reservation import Reservation
 
 # File for testing the methods and debugging
 
-u1 = User("u1", "email1", "password1")
-u2 = User("u2", "email2", "password2")
-u3 = User("u3", "email3", "password3")
+u1 = User(1,"u1", "password1")
+u2 = User(2,"u2", "password2")
+u3 = User(3,"u3", "password3")
 room1 = Room(1,False)
 room2 = Room(2,False)
 roomList = [room1, room2]
@@ -143,8 +143,16 @@ time8 = Timeslot(8,10,"21/11/2016",registry.genTid())
 registry.makeNewReservation(1,u3,time8,"des8")
 print()
 
-# Make another reservation at max reservationNb
-# Make another reservation
+# Make another reservations at max reservationNb
 time9 = Timeslot(8,10,"22/11/2016",registry.genTid())
 registry.makeNewReservation(1,u3,time9,"des9")
+print()
+
+time10 = Timeslot(8,10,"23/11/2016",registry.genTid())
+registry.makeNewReservation(1,u3,time10,"des10")
+print()
+
+# this one will fail...
+time11 = Timeslot(8,10,"24/11/2016",registry.genTid())
+registry.makeNewReservation(1,u3,time11,"des11")
 print()
