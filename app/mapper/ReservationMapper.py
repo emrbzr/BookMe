@@ -36,11 +36,11 @@ def deleteReservation(self, reservationId):
 def save():
     UnitOfWork.commit()
 #adds room object
-def addRoom(reservation):
+def addReservation(reservation):
     ReservationTDG.insert(reservation)
 #updates room Object
-def updateRoom(reservation):
+def updateReservation(reservation):
     ReservationTDG.update(reservation)
 #deletes room object
-def deleteRoom(reservation):
+def deleteReservation(reservation):
     ReservationTDG.delete(reservation)

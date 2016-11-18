@@ -3,6 +3,7 @@ from .decorators import *
 from .models import *
 from flask import render_template, request
 from app.TDG import UserTDG
+from app.mapper import ReservationMapper
 from app.core.user import User
 #if 404 error render 404.html
 @app.errorhandler(404)
@@ -194,8 +195,11 @@ def addOctober():
 def addNovember():
 	return render_template('add.php')
 
-@app.route('/december/add')
+@app.route('/december/add',methods=['GET', 'POST'])
 @login_required
 @nocache
 def addDecember():
 	return render_template('add.php')
+#def addNewReservation():
+#    reservation =
+#    ReservationMapper.addReservation()

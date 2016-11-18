@@ -24,7 +24,7 @@
               <p style="color: #333; font-weight: bold;"><font color="red">Warning: You have 2 minutes to complete the reservation</font> .</p>
               <br>
               <p style="color: #333; font-weight: bold;">Please enter a short description of your reservation.</p>
-              <input type="text" id="myText" value="">
+              <input type="text" id="myText" value=" {{ request.form.description }} ">
             </div>
           </div>
           <div class="row-fluid">

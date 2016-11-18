@@ -71,4 +71,3 @@ def commit(self):
         del newReservationList[:]
         del reservationChangedList[:]
         del reservationDeletedList[:]
-    
