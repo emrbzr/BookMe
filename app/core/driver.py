@@ -39,9 +39,9 @@ room2.printLock()
 print()
 
 # Print Info
-registry.getReservationBook().getReservationList()[0].print()
+registry.getReservationBook().getReservationList()[0]._print()
 print()
-registry.getReservationBook().getReservationList()[1].print()
+registry.getReservationBook().getReservationList()[1]._print()
 print()
 
 # Attempting to lock a locked room
@@ -64,7 +64,7 @@ print()
 
 # Add to waiting list
 registry.addToWaitingList(1,u3,time3,"des3")
-registry.getReservationBook().getWaitingList()[0].print()
+registry.getReservationBook().getWaitingList()[0]._print()
 print()
 
 # Current Number of Reservations and Waitings in the System
@@ -75,11 +75,11 @@ print()
 print("Modifying a room: ")
 time4 = Timeslot(3,4,"15/11/2016",registry.genTid())
 print("Before:")
-registry.getReservationBook().getReservationList()[1].print()
+registry.getReservationBook().getReservationList()[1]._print()
 print()
 print("After:")
 registry.modifyReservation(registry.getReservationBook().getReservationList()[1].getId(),time4)
-registry.getReservationBook().getReservationList()[1].print()
+registry.getReservationBook().getReservationList()[1]._print()
 print()
 
 # Current Number of Reservations and Waitings in the System
@@ -97,7 +97,7 @@ print()
 
 # Update the waiting list
 registry.updateWaiting(updatedRoomId)
-registry.getReservationBook().getReservationList()[1].print()
+registry.getReservationBook().getReservationList()[1]._print()
 print()
 
 # Current Number of Reservations and Waitings in the System
@@ -108,13 +108,13 @@ print()
 print("Schedule:")
 schedule = registry.viewSchedule()
 for index in range(len(schedule)):
-    schedule[index].print()
+    schedule[index]._print()
     print()
 
 # Make another reservation
 time5 = Timeslot(5,7,"17/11/2016",registry.genTid())
 registry.makeNewReservation(2,u3,time5,"des5")
-registry.getReservationBook().getReservationList()[2].print()
+registry.getReservationBook().getReservationList()[2]._print()
 print()
 
 # Current Number of Reservations and Waitings in the System
@@ -125,13 +125,13 @@ print()
 print("My Reservations (u3):")
 myReservations = registry.viewMyReservation(u3)
 for index in range(len(myReservations)):
-    myReservations[index].print()
+    myReservations[index]._print()
     print()
 
 # Recreating reservation from database, overload
 time6 = Timeslot(1,2,"16/11/2016",registry.genTid())
 reservationD = Reservation(room1,u1,time6,"des6",reservationBook.genRid())
-reservationD.print()
+reservationD._print()
 
 # Make another reservation on the day
 time7 = Timeslot(8,10,"17/11/2016",registry.genTid())

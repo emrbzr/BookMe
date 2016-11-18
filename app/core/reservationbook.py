@@ -1,6 +1,3 @@
-from room import Room
-from user import User
-from timeslot import Timeslot
 from reservation import Reservation
 from waiting import Waiting
 from collections import deque
@@ -9,35 +6,35 @@ from collections import deque
 class ReservationBook:
 
     # Constructor
-    def __init__(self,reservationlist:[],waitinglist:[]):
+    def __init__(self,reservationlist,waitinglist):
         self.reservationList = reservationlist
         self.waitingList = waitinglist
 
     # Method to make a reservation
-    def makeReservation(self, room: Room, holder: User, time: Timeslot, description: str):
+    def makeReservation(self, room, holder, time, description):
         # Check if room is available at specifie time
         if (self.available(room, time) == True):
             r = Reservation(room,holder,time,description,self.genRid())
             self.reservationList.append(r)
 
     # Method to add to the waiting list
-    def addToWaitingList(self, room: Room, holder: User, time: Timeslot, description: str):
+    def addToWaitingList(self, room, holder, time, description):
         w = Waiting(room,holder,time,description,self.genWid())
         self.waitingList.append(w)
 
     # Method to modify reservation
-    def modifyReservation(self,reservationId:int, time:Timeslot):
+    def modifyReservation(self,reservationId, time):
         r = self.getReservationById(reservationId)
         if self.available(r.getRoom(), r.getTimeslot(),reservationId) == True:
             r.setTimeslot(time)
 
     # Method to cancel reservation
-    def cancel(self,reservationId:int):
+    def cancel(self,reservationId):
         r = self.getReservationById(reservationId)
         self.reservationList.remove(r)
 
     # Method to update the waiting list
-    def updateWaiting(self, roomId:int):
+    def updateWaiting(self, roomId):
         # Get a queue of all reservations in specify room
         wList = self.getListByRoom(roomId)
         for index in range(len(wList)):
@@ -64,7 +61,7 @@ class ReservationBook:
                 return self.reservationList[index]
 
     # Method to get a queue of Waiting
-    def getListByRoom(self,roomId:int):
+    def getListByRoom(self,roomId):
         wList = deque([])
         for index in range(len(self.waitingList)):
             if self.waitingList[index].getRoom().getId() == roomId:
@@ -72,7 +69,7 @@ class ReservationBook:
         return wList
 
     # Method to check if the timeslot is available, also overloaded for modifyReservation case
-    def available(self,room: Room, time: Timeslot, rid:int = None):
+    def available(self,room, time, rid = None):
         isAvailable = True
         if rid == None:
             for index in range(len(self.reservationList)):
@@ -111,7 +108,7 @@ class ReservationBook:
         return isAvailable
 
     # Method to view MY reservations
-    def viewMyReservation(self,user:User):
+    def viewMyReservation(self,user):
         myReservationList = []
         for index in range(len(self.reservationList)):
             r = self.reservationList[index]
@@ -165,7 +162,7 @@ class ReservationBook:
         return tid
 
     # Method for restriction
-    def isRestricted(self,user:User,time:Timeslot):
+    def isRestricted(self,user,time):
         restrictions = False
         # Get user reservations
         myReservationList = self.viewMyReservation(user)
@@ -189,11 +186,11 @@ class ReservationBook:
     def getReservationList(self):
         return self.reservationList
 
-    def setReservationList(self, reservationList:[]):
+    def setReservationList(self, reservationList):
         self.reservationList = reservationList
 
     def getWaitingList(self):
         return self.waitingList
 
-    def setWaitingList(self, waitingList:[]):
+    def setWaitingList(self, waitingList):
         self.waitingList = waitingList

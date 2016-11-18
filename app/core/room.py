@@ -2,7 +2,7 @@
 class Room:
 
     # Constructor
-    def __init__(self,roomId:int,lock:bool):
+    def __init__(self,roomId,lock):
         self.roomId = roomId
         self.lock = lock
 
@@ -20,5 +20,5 @@ class Room:
     def getId(self):
         return self.roomId
 
-    def setId(self,roomId:int):
+    def setId(self,roomId):
         self.roomId = roomId

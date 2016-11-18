@@ -1,6 +1,5 @@
-from flask import render_template, request, url_for, redirect, session, make_response,flash
+from flask import url_for, redirect, session, make_response,flash
 from functools import wraps, update_wrapper
-from flask_cache import Cache
 from datetime import datetime
 # login required
 def login_required(f):

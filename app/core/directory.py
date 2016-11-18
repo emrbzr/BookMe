@@ -1,10 +1,8 @@
-from room import Room
-
 # Directory Object
 class Directory:
 
     # Constructor
-    def __init__(self,roomlist:[]):
+    def __init__(self,roomlist):
         self.roomList = roomlist
 
     # Method to get room based on the Id
@@ -17,5 +15,5 @@ class Directory:
     def getRoomList(self):
         return self.roomList
 
-    def setRoomList(self,roomList:[]):
+    def setRoomList(self,roomList):
         self.roomList = roomList

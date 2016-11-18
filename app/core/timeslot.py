@@ -2,8 +2,7 @@
 class Timeslot:
 
     # Constructor
-    def __init__(self, startTime:int, endTime:int, date:str, timeId:int):
-
+    def __init__(self, startTime, endTime, date, timeId):
         self.startTime = startTime
         self.endTime = endTime
         self.date = date
@@ -11,7 +10,7 @@ class Timeslot:
         self.timeId = timeId
 
     # Print method for debugging
-    def print(self):
+    def _print(self):
         print("Timeslot Info")
         print("StartTime: " + str(self.startTime))
         print("EndTime: " + str(self.endTime))
@@ -23,29 +22,29 @@ class Timeslot:
     def getStartTime(self):
         return self.startTime
 
-    def setStartTime(self,startTime:int):
+    def setStartTime(self,startTime):
         self.startTime = startTime
 
     def getEndTime(self):
         return self.endTime
 
-    def setEndTime(self,endTime:int):
+    def setEndTime(self,endTime):
         self.endTime = endTime
 
     def getDate(self):
         return self.date
 
-    def setDate(self,date:str):
+    def setDate(self,date):
         self.date = date
 
     def getBlock(self):
         return self.block
 
-    def setBlock(self, block:int):
+    def setBlock(self, block):
         self.block = block
 
     def getId(self):
         return self.timeId
 
-    def setId(self,timeId:int):
+    def setId(self,timeId):
         self.timeId = timeId
