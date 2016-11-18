@@ -7,6 +7,7 @@ class User:
     def __init__(self,userId, name,password):
         self.name = name
         self.password = password
+        self.userId = userId
 
     # Accessors and Mutators
     def getName(self):
@@ -20,3 +21,11 @@ class User:
 
     def setPassword(self, password):
         self.password = password
+
+    def getId(self):
+        return self.userId
+
+    def setId(self, userId):
+        self.userId = userId
+
+

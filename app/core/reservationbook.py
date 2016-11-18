@@ -171,9 +171,9 @@ class ReservationBook:
 
         # Get week nb of specify Timeslot
         date1 = time.getDate()
-        day1 = int(date1[0:2])
-        month1 = int(date1[3:5])
-        year1 = int(date1[6:10])
+        day1 = int(date1[8:10])
+        month1 = int(date1[5:7])
+        year1 = int(date1[0:4])
         dt1 = datetime(year1, month1, day1)
         wk1 = dt1.isocalendar()[1]
 
@@ -181,9 +181,9 @@ class ReservationBook:
             r = myReservationList[index]
             # Get week nb
             date2 = r.getTimeslot().getDate()
-            day2 = int(date2[0:2])
-            month2 = int(date2[3:5])
-            year2 = int(date2[6:10])
+            day2 = int(date2[8:10])
+            month2 = int(date2[5:7])
+            year2 = int(date2[0:4])
             dt2 = datetime(year2, month2, day2)
             wk2 = dt2.isocalendar()[1]
             # Compare if week nb matches

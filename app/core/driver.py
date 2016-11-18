@@ -24,7 +24,7 @@ registry = Registry(directory,reservationBook)
 # Reserving a room
 registry.initiateAction(1)
 room1.printLock()
-time1 = Timeslot(1,2,"15/11/2016",registry.genTid())
+time1 = Timeslot(1,2,"2016-11-15",registry.genTid())
 registry.makeNewReservation(1,u1,time1,"des1")
 registry.endAction(1)
 room1.printLock()
@@ -32,7 +32,7 @@ print()
 
 registry.initiateAction(2)
 room2.printLock()
-time2 = Timeslot(1,3,"15/11/2016",registry.genTid())
+time2 = Timeslot(1,3,"2016-11-15",registry.genTid())
 registry.makeNewReservation(2,u2,time2,"des2")
 registry.endAction(2)
 room2.printLock()
@@ -58,7 +58,7 @@ registry.printNb()
 print()
 
 # Attempt to reserve a room at the same timeslot or overlapping timeslot
-time3 = Timeslot(1,3,"15/11/2016",registry.genTid())
+time3 = Timeslot(1,3,"2016-11-15",registry.genTid())
 registry.makeNewReservation(1,u3,time3,"des3")
 print()
 
@@ -73,7 +73,7 @@ print()
 
 # Modify Reservation
 print("Modifying a room: ")
-time4 = Timeslot(3,4,"15/11/2016",registry.genTid())
+time4 = Timeslot(3,4,"2016-11-15",registry.genTid())
 print("Before:")
 registry.getReservationBook().getReservationList()[1]._print()
 print()
@@ -112,7 +112,7 @@ for index in range(len(schedule)):
     print()
 
 # Make another reservation
-time5 = Timeslot(5,7,"17/11/2016",registry.genTid())
+time5 = Timeslot(5,7,"2016-11-17",registry.genTid())
 registry.makeNewReservation(2,u3,time5,"des5")
 registry.getReservationBook().getReservationList()[2]._print()
 print()
@@ -129,30 +129,30 @@ for index in range(len(myReservations)):
     print()
 
 # Recreating reservation from database, overload
-time6 = Timeslot(1,2,"16/11/2016",registry.genTid())
+time6 = Timeslot(1,2,"2016-11-16",registry.genTid())
 reservationD = Reservation(room1,u1,time6,"des6",reservationBook.genRid())
 reservationD._print()
 
 # Make another reservation on the day
-time7 = Timeslot(8,10,"17/11/2016",registry.genTid())
+time7 = Timeslot(8,10,"2016-11-17",registry.genTid())
 registry.makeNewReservation(1,u3,time7,"des7")
 print()
 
 # Make another reservation
-time8 = Timeslot(8,10,"21/11/2016",registry.genTid())
+time8 = Timeslot(8,10,"2016-11-21",registry.genTid())
 registry.makeNewReservation(1,u3,time8,"des8")
 print()
 
 # Make another reservations at max reservationNb
-time9 = Timeslot(8,10,"22/11/2016",registry.genTid())
+time9 = Timeslot(8,10,"2016-11-22",registry.genTid())
 registry.makeNewReservation(1,u3,time9,"des9")
 print()
 
-time10 = Timeslot(8,10,"23/11/2016",registry.genTid())
+time10 = Timeslot(8,10,"2016-11-23",registry.genTid())
 registry.makeNewReservation(1,u3,time10,"des10")
 print()
 
 # this one will fail...
-time11 = Timeslot(8,10,"24/11/2016",registry.genTid())
+time11 = Timeslot(8,10,"2016-11-24",registry.genTid())
 registry.makeNewReservation(1,u3,time11,"des11")
 print()
