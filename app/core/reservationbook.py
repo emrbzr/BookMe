@@ -1,6 +1,7 @@
 from reservation import Reservation
 from waiting import Waiting
 from collections import deque
+from datetime import datetime
 
 # ReservationBook object
 class ReservationBook:
@@ -164,21 +165,39 @@ class ReservationBook:
     # Method for restriction
     def isRestricted(self,user,time):
         restrictions = False
+        nbMyReservationInWeek = 0
         # Get user reservations
         myReservationList = self.viewMyReservation(user)
 
+        # Get week nb of specify Timeslot
+        date1 = time.getDate()
+        day1 = int(date1[0:2])
+        month1 = int(date1[3:5])
+        year1 = int(date1[6:10])
+        dt1 = datetime(year1, month1, day1)
+        wk1 = dt1.isocalendar()[1]
+
         for index in range(len(myReservationList)):
             r = myReservationList[index]
+            # Get week nb
+            date2 = r.getTimeslot().getDate()
+            day2 = int(date2[0:2])
+            month2 = int(date2[3:5])
+            year2 = int(date2[6:10])
+            dt2 = datetime(year2, month2, day2)
+            wk2 = dt2.isocalendar()[1]
+            # Compare if week nb matches
+            if wk1 == wk2:
+                nbMyReservationInWeek = nbMyReservationInWeek + 1
             # Check if user is attempting to make another reservation on same day
             if r.getTimeslot().getDate() == time.getDate():
                  restrictions = True
                  print("Request Failed: Only one reservation per day.")
                  break
         # Check if user is at max reservation
-        nbMyReservation = len(myReservationList)
-        if nbMyReservation == 3:
+        if nbMyReservationInWeek >= 3:
             restrictions = True
-            print("Request Failed: At maximum number of reservations.")
+            print("Request Failed: At maximum number of reservations for this week.")
 
         return restrictions
 
