@@ -2,7 +2,8 @@ from reservation import Reservation
 from waiting import Waiting
 from collections import deque
 from datetime import datetime
-import ReservationMapper
+from app.mapper import ReservationMapper
+from app.mapper import WaitingMapper
 # ReservationBook object
 class ReservationBook:
 
