@@ -20,7 +20,7 @@ def not_found_error(error):
 #if 500 error render 500.html
 @app.errorhandler(500)
 def internal_error(error):
-    db.session.rollback()
+    #db.session.rollback()
     return render_template('500.html'), 500
 
 @app.route('/')
@@ -36,6 +36,13 @@ def index():
 			if user.getPassword() == request.form['password']:
 				session['logged_in'] = True
 				session['userId'] = user.getId()
+				#fetch all user reservation
+				#i.e from timeslottable
+				#reservationtable
+				#merge reservationdata with timeslottable then store in reservation[]
+				#waitingtable
+				#store the waitingtable in waiting[]
+
 				return redirect(url_for('dashboard',user=user.getName()))
 			else:
 				return render_template('login.html',error=error)
@@ -57,7 +64,22 @@ def logout():
 @nocache
 def dashboard(user):
 	session['user'] = user
-	return render_template('index.html',user=user)
+	room = []
+	startTime = []
+	endTime =[]
+	date = []
+	description = []
+	userReservation = ReservationMapper.findByUser(session['userId'])
+	for index, reservation in enumerate(userReservation):
+		print(reservation)
+		room.append(reservation.getRoom())
+		print(room)
+		startTime.append(reservation.getTimeslot())
+		print(startTime)
+		endTime.append(reservation.getTimeslot().getEndTime())
+		date.append(reservation.getTimeslot().getDate())
+		description.append(reservation.getDescription())
+	return render_template('index.html',user=user, room = room, startTime=startTime,endTime=endTime,date=date, description=description)
 
 @app.route('/month')
 @login_required
@@ -98,16 +120,11 @@ def chooseMonth(month):
 
 @app.route('/<month>/<day>',methods=['GET','POST'])
 def addNewReservation(month,day):
-	print("hello")
 	if request.method == 'POST':
-		print('inPost')
 		if request.form.getlist('chosenTime') is not None:
-			print('inChosentime')
 			chosenTime = request.form.getlist('chosenTime')
 			endTime = int(chosenTime[-1])
-			print(endTime)
 			startTime = int(chosenTime[0])
-			print(startTime)
 			block = endTime - startTime
 			if block < 3:
 				if month == 'september':
@@ -140,6 +157,10 @@ def addNewReservation(month,day):
 				else:
 					date = '2016-'+month+'-'+day
 				room = Room(1,True)
+				#fetch all rooms from the db
+				#insert into the directory
+				#initiateAction(room.getId())
+				#if room is not locked then
 				user = UserMapper.find(session['userId'])
 				timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,user.getId())
 				TimeslotMapper.save(timeSlot)
@@ -147,6 +168,9 @@ def addNewReservation(month,day):
 				timeSlot.setId(timeslotId)
 				description = request.form['description']
 				processed_description = description.upper()
+				#fetch all reservations
+				#check if a reservatin for that time slot is
 				reservation = ReservationMapper.makeNewReservation(room,user,timeSlot,processed_description,timeslotId)
-				ReservationTDG.insert(reservation)
+				ReservationMapper.save(reservation)
+
 	return render_template('add.html')

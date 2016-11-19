@@ -18,7 +18,7 @@ def find(timeslotId):
         if result == None:
             return
         else:
-            timeslot = Timeslot(result[0][1], result[0][2], result[0][3], result[0][4],result[0][5])
+            timeslot = Timeslot(result[0][1], result[0][2], result[0][3], result[0][5])
             TimeslotIdMap.add(timeslot)
 
     return timeslot

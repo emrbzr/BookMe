@@ -1,6 +1,9 @@
 from app.TDG import ReservationTDG
 from app.core.reservation import Reservation
 import ReservationIdMap
+from app.TDG import RoomTDG
+from app.TDG import UserTDG
+from app.TDG import TimeslotTDG
 import UnitOfWork
 
 def makeNewReservation(room,holder,time,description,reservationId):
@@ -9,20 +12,38 @@ def makeNewReservation(room,holder,time,description,reservationId):
     UnitOfWork.registerNew(reservation)
     return reservation
 
-def getReservation(reservationId):
+def find(reservationId):
     reservation = ReservationIdMap.find(reservationId)
     result = []
     if reservation == None:
+
         result = ReservationTDG.find(reservationId)
+        print(result)
         if result == None:
             return
         else:
-            reservation = Reservation(result[0][0], result[0][1],result[0][2],result[0][3],result[0][4])
+            #must make a reference to timeslottable and create a timeslot object
+            room = RoomTDG.find(result[0][1])
+            holder = UserTDG.find(result[0][3])
+            timeslot = TimeslotTDG.find(result[0][4])
+            reservation = Reservation(room, holder,timeslot,result[0][2],result[0][0])
             ReservationIdMap.addTo(reservation)
     return reservation
 
+def findByDate(date):
+    return ReservationTDG.findByDate(date)
+
+def findByUser(userId):
+    userReservation = []
+    result = ReservationTDG.findByUserId(userId)
+    print(result)
+    for index, userR in enumerate(result):
+        userReservation.append(find(userR[0]))
+        print(userReservation[0])
+    return userReservation
+
 def setReservation(reservationId):
-    reservation = getReservation(reservationId)
+    reservation = find(reservationId)
     reservation.setId(reservationId)
     UnitOfWork.registerDirty(reservationId)
 

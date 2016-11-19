@@ -148,3 +148,4 @@ print()
 time9 = Timeslot(8,10,"22/11/2016",registry.genTid())
 registry.makeNewReservation(1,u3,time9,"des9")
 print()
+

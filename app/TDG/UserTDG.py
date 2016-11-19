@@ -12,7 +12,7 @@ def find(id):
 	return data
 
 def insert(user):
-	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	name = user.getName()
 	pw = user.getPassword()
@@ -22,7 +22,7 @@ def insert(user):
 	conn.close()
 
 def update(id, name, password):
-	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	cur.execute("""UPDATE userTable SET name = %s,
   		password = %s WHERE userId = %s;""", (name, password, id))
@@ -30,7 +30,7 @@ def update(id, name, password):
 	conn.close()
 
 def delete(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	cur.execute("""DELETE FROM userTable WHERE userId = %s;""", (id,))
 	conn.commit()

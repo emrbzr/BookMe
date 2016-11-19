@@ -4,7 +4,7 @@ from psycopg2.extensions import AsIs
 
 
 def find(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT * FROM reservationTable WHERE reservationId = %s;""", (id,))
@@ -28,7 +28,7 @@ def insert(reservation):
 	conn.close()
 
 def update(id, roomId, userId, description, timeslot):
-	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE reservationTable SET room = %s, holder = %s, 
@@ -38,7 +38,7 @@ def update(id, roomId, userId, description, timeslot):
 	conn.close()
 
 def delete(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""DELETE FROM reservationTable WHERE reservationId = %s;""", (id,))
@@ -46,8 +46,25 @@ def delete(id):
 	conn.close()
 
 
+def findByDate(date):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	cur = conn.cursor()
+	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable
+		ON (reservationTable.timeslot = timeslotTable.timeslotId) WHERE date = %s;""", (date,))
+	data = cur.fetchall()
 
+	conn.close()
+	return data
 
+def findByUserId(userId):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	cur = conn.cursor()
+
+	cur.execute("""SELECT * FROM reservationTable WHERE holder = %s;""", (userId,))
+	data = cur.fetchall()
+	conn.close()
+	# returns row as list
+	return data
 
 
 

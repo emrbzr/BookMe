@@ -9,7 +9,7 @@ def makeNew(roomId, lock):
     UnitOfWork.registerNewRoom(room)
     return room
 
-def getRoom(roomId):
+def find(roomId):
     room = RoomIdMap.find(roomId)
     result = []
     if room == None:
@@ -22,7 +22,7 @@ def getRoom(roomId):
     return room
 
 def setRoom(roomId):
-    room = getRoom(roomId)
+    room = find(roomId)
     room.setId(roomId)
     UnitOfWork.registerDirty(roomId)
 
