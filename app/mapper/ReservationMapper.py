@@ -39,7 +39,6 @@ def findByUser(userId):
     print(result)
     for index, userR in enumerate(result):
         userReservation.append(find(userR[0]))
-        print(userReservation[0])
     return userReservation
 
 def setReservation(reservationId):

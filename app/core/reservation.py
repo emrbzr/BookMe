@@ -29,6 +29,7 @@ class Reservation:
         self.reservationId = reservationId
 
     def getTimeslot(self):
+        print(self.time)
         return self.time
 
     def setTimeslot(self, time):
