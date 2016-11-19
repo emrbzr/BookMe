@@ -64,23 +64,17 @@ def logout():
 @nocache
 def dashboard(user):
 	session['user'] = user
-	room = []
-	startTime = []
-	endTime =[]
-	date = []
-	description = []
+	reservation1 = []
 	userReservation = ReservationMapper.findByUser(session['userId'])
 	for index, reservation in enumerate(userReservation):
 		print(reservation)
-		room.append(reservation.getRoom())
-		print(room)
-		startTime.append(reservation[0][1])
-		print(startTime)
-		endTime.append(reservation[0][2])
-		print(endTime)
-		date.append(reservation.getTimeslot().getDate())
-		description.append(reservation.getDescription())
-	return render_template('index.html',user=user, room = room, startTime=startTime,endTime=endTime,date=date, description=description)
+		reservation1.append(reservation.getRoom().getId())
+		reservation1.append(reservation.getTimeslot().getStartTime())
+		reservation1.append(reservation.getTimeslot().getEndTime())
+		reservation1.append(reservation.getTimeslot().getDate())
+		reservation1.append(reservation.getDescription())
+
+	return render_template('index.html',user=user, reservation=reservation1)
 
 @app.route('/month')
 @login_required
