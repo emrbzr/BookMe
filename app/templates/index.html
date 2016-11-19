@@ -44,6 +44,7 @@
               <th>Endtime</th>
               <th>Date</th>
               <th>Description</th>
+              <th>ReservationId</th>
               <th>Modify</th>
               <th>Cancel</th>
           </tr>
@@ -54,24 +55,25 @@
               {% for foo in reservation %}
                   <td>{{ foo }}</td>
                   {% set count = count + 1 %}
-                  {% if count%5 == 0 %}
+                  {% if count%6 == 0 %}
                     {% block content %}
-                        <td>
-                            <form id="search_form" method="POST">
-                                <td>
-                                    <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
-                                       <input type="checkbox" name="modify" value="9">
-                                    </div>
-                                </td>
-                        </form>
+                       <td><div class="panel panel-default">
+                            <div class="panel-body">
+                              <div id="month" class="BottomPadder text-center">
+                                  <a class="col-md-12" style="text-decoration:none;" href="{{ url_for('cancel') }}"><div>Modify Reservation</div></a>
+                              </div>
+                            </div>
+                          </div>
                         </td>
-                        <form id="search_form" method="POST">
-                            <td>
-                                <div style="transition: background 1s, color 0.75s;" class="Greenies col-xs-6 col-sm-6 col-md-6 col-lg-6 divider-spec text-center">
-                                   <input type="checkbox" name="cancel" value="9">
-                                </div>
-                            </td>
-                        </form>
+                        </td>
+                        <td><div class="panel panel-default">
+                            <div class="panel-body">
+                              <div id="month" class="BottomPadder text-center">
+                                <a class="col-md-12" style="text-decoration:none;" href="{{ url_for('cancel') }}"><div>Cancel Reservation</div></a>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
                         </tr>
                         <tr>
                     {%  endblock content %}
@@ -114,7 +116,9 @@
       });
       <!-- hiding the page adress from the bottom bar, cannot right click and copy the adress-->
      // !$(".col-md-12").click(function(){
-        
+      function form_submit() {
+          document.getElementById("cancelReservation").submit();
+      }
       //});
     </script>
     <!--[endif]-->
