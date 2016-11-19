@@ -61,6 +61,24 @@ class Registry:
     # Method for restriction
     def isRestricted(self, user, time):
         return self.reservationBook.isRestricted(user,time)
+    
+    # Method to view waiting list
+    def viewMyWaiting(self, user):
+        myWaitlist = []
+        for index in range(len(self.reservationBook.waitingList)):
+            w = self.reservationBook.waitingList[index]
+            if (w.getUser() == user):
+                myWaitlist.append(w)
+        return self.myWaitlist
+
+    # Method to cancel waitlist
+    def cancelWaiting(waitingId):
+        for index in range(len(self.reservationBook.waitingList)):
+            if self.reservationBook.waitingList[index].getId() == waitingId:
+                w = self.reservationBook.waitingList[index]
+                self.reservationBook.waitingList.remove(w)
+            else:
+                print("There are no reservations to cancel.")
 
     # Accessors and Mutators
     def getDirectory(self):

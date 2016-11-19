@@ -47,6 +47,15 @@ class ReservationBook:
                     self.waitingList.remove(w)
                     break
 
+
+    # Method to remove waiting from all rooms
+    def removeWaitingFromOtherRooms(rUser, rTime):
+        for index in range(len(self.waitingList)):
+            if self.waitingList.[index]getUser() == rUser && self.waitingList.[index].getTimeslot() == rTime:
+                w = self.waitingList.[index]
+                self.waitingList.remove(w)
+            
+                           
     # Method to view all reservations
     def view(self):
         return self.display()
