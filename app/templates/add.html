@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Make a New Reservation</title>
-
     <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
     <link rel="stylesheet" href="../static/styles/font-awesome.min.css">
     <link rel="stylesheet" href="../static/styles/Content.css">
@@ -17,6 +16,18 @@
       <div class="page-header text-center">
         <h1>Room Selection</h1>
       </div>
+        <div class="row-fluid">
+            <div class="panel panel-default">
+                <div id="linksending" class="panel-body">
+                    <div style="border-right: 1px solid #ddd;" class="col-md-6 text-center">
+                        <a href="{{ url_for('dashboard',user=session['user']) }}">My Profile</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="/logout">Logout : Emir</a>
+                    </div>
+                </div>
+            </div>
+        </div><br>
       <div id="textcolorcorrector" class="row-fluid">
         <div class="text-center">Please Select the Room You Wish To Reserve</div>
           <br>
@@ -118,25 +129,14 @@
       </div>
     </div>
 
-<div class="row-fluid">
-        <div class="panel panel-default">
-          <div id="linksending" class="panel-body">
-            <div style="border-right: 1px solid #ddd;" class="col-md-6 text-center">
-             <a href="{{ url_for('dashboard',user=session['user']) }}">My Profile</a>
-            </div>
-            <div class="col-md-6 text-center">
-              <a href="/logout">Logout : Emir</a>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
    
-    {% include 'modal (2).html' %}
-    {% include 'modal (1).html' %}
-    {% include 'modal (3).html' %}
-    {% include 'modal (4).html' %}
-    {% include 'modal (5).html' %}
+    {% include 'modal (2).php' %}
+    {% include 'modal (1).php' %}
+    {% include 'modal (3).php' %}
+    {% include 'modal (4).php' %}
+    {% include 'modal (5).php' %}
 
 
     <!-- For Fast Loading Of Scripts -->

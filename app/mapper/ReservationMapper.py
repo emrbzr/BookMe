@@ -18,7 +18,6 @@ def find(reservationId):
     if reservation == None:
 
         result = ReservationTDG.find(reservationId)
-        print(result)
         if result == None:
             return
         else:
@@ -36,7 +35,6 @@ def findByDate(date):
 def findByUser(userId):
     userReservation = []
     result = ReservationTDG.findByUserId(userId)
-    print(result)
     for index, userR in enumerate(result):
         userReservation.append(find(userR[0]))
     return userReservation
