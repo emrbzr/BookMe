@@ -2,12 +2,12 @@
 class Timeslot:
 
     # Constructor
-    def __init__(self, startTime, endTime, date, timeId):
+    def __init__(self, startTime, endTime, date, userId):
         self.startTime = startTime
         self.endTime = endTime
         self.date = date
         self.block = endTime - startTime
-        self.timeId = timeId
+        self.userId = userId
 
     # Print method for debugging
     def _print(self):
@@ -16,7 +16,7 @@ class Timeslot:
         print("EndTime: " + str(self.endTime))
         print("Date: " + str(self.date))
         print("Duration: " + str(self.block))
-        print("TID: " + str(self.timeId))
+        print("UserId: " + str(self.userId))
 
     # Accessors and Mutators
     def getStartTime(self):
@@ -48,3 +48,9 @@ class Timeslot:
 
     def setId(self,timeId):
         self.timeId = timeId
+
+    def getUser(self):
+        return self.userId
+
+    def setUser(self,userId):
+        self.userId = userId

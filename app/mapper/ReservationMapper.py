@@ -3,44 +3,44 @@ from app.core.reservation import Reservation
 import ReservationIdMap
 import UnitOfWork
 
-def makeNew(self, room,holder,time,description,reservationId):
+def makeNewReservation(room,holder,time,description,reservationId):
     reservation = Reservation(room, holder,time,description,reservationId)
     ReservationIdMap.addTo(reservation)
-    UnitOfWork.registerNewReservation(reservation)
+    UnitOfWork.registerNew(reservation)
     return reservation
 
-def getReservation(self, reservationId):
+def getReservation(reservationId):
     reservation = ReservationIdMap.find(reservationId)
     result = []
     if reservation == None:
         result = ReservationTDG.find(reservationId)
-    if result == None:
-        return
-    else:
-        reservation = Reservation(result[0], result[1],result[2],result[3],result[4])
-        ReservationIdMap.addTo(reservation)
-        return reservation
+        if result == None:
+            return
+        else:
+            reservation = Reservation(result[0][0], result[0][1],result[0][2],result[0][3],result[0][4])
+            ReservationIdMap.addTo(reservation)
+    return reservation
 
-def setReservation(self, reservationId):
+def setReservation(reservationId):
     reservation = getReservation(reservationId)
     reservation.setId(reservationId)
-    UnitOfWork.registerDirtyReservation(reservationId)
+    UnitOfWork.registerDirty(reservationId)
 
-def deleteReservation(self, reservationId):
+def deleteReservation(reservationId):
     reservation = ReservationIdMap.find(reservationId)
     if reservation is not None:
         ReservationIdMap.removeFrom(reservation)
-    UnitOfWork.registerDeletedReservation(reservation)
+    UnitOfWork.registerDeleted(reservation)
 
 #save all work
-def save():
+def done():
     UnitOfWork.commit()
 #adds room object
-def addReservation(reservation):
+def save(reservation):
     ReservationTDG.insert(reservation)
 #updates room Object
-def updateReservation(reservation):
+def update(reservation):
     ReservationTDG.update(reservation)
 #deletes room object
-def deleteReservation(reservation):
+def delete(reservation):
     ReservationTDG.delete(reservation)

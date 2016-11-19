@@ -9,9 +9,5 @@ app.config.from_object('config')
 app.secret_key = os.urandom(24)
 #create db instance
 db = SQLAlchemy(app)
-#import models
-from app import models
-#create all tables in models views
-db.create_all()
 #import views
 from app import views, decorators

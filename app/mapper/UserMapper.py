@@ -2,7 +2,7 @@ from app.TDG import UserTDG
 from app.core.user import User
 
 import UnitOfWork
-import UserIdMapper
+import UserIdMap
 
 
 def __init__():
@@ -11,43 +11,48 @@ def __init__():
 
 def makeNew(name, password):
     user = User(name, password)
-    UserIdMapper.addTo(user)
+    UserIdMap.addTo(user)
     UnitOfWork.registerNew(user)
     return user
 
 
-def getUser(self, userId):
-    user = UserIdMapper.find(userId)
-    result = []
-    if user == None:
-        result = UserTDG.find(userId)
-    if result == None:
-        return
-    else:
-        user = User(result[0], result[1], result[1])
-        UserIdMapper.addTo(user)
-        return user
+def find(userId):
+    user = UserIdMap.find(userId)
 
-def setUser(self, userId):
-    user = getUser(userId)
-    user.setName(self.getName())
+    result = []
+    if user is None:
+        result = UserTDG.find(userId)
+        if not result:
+            return
+        else:
+            user = User(result[0][0], result[0][1], result[0][2])
+            UserIdMap.addTo(user)
+    return user
+
+def getUser(userId):
+    user = UserIdMap.find(userId)
+    return user
+
+def setUser(userId):
+    user = find(userId)
+    user.setName(userId.getName())
     UnitOfWork.registerDirty(user)
 
 
-def delete(self, userId):
-    user = UserIdMapper.find(userId)
+def delete(userId):
+    user = UserIdMap.find(userId)
     if user is not None:
-        UserIdMapper.removeFrom(user)
+        UserIdMap.removeFrom(user)
     UnitOfWork.registerDeleted(user)
 
 def done():
     UnitOfWork.commit()
 
-def addUser(user):
+def save(user):
     UserTDG.insert(user)
 
-def updateUser(user):
+def update(user):
     UserTDG.update(user)
 
-def deleteUser(userId):
+def erase(userId):
     UserTDG.delete(userId)

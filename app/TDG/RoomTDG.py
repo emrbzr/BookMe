@@ -20,8 +20,8 @@ def insert(room):
 	lock = room.getLock()
 
 	cur.execute("""INSERT INTO roomTable(lock) VALUES 
-		(%s);""", (AsIs(lock)))
-
+		(%s);""", lock)
+	conn.commit()
 	conn.close()
 
 def update(id, availability):
@@ -29,8 +29,8 @@ def update(id, availability):
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE roomTable SET roomLock = %s 
-		WHERE roomId = %s;""", (AsIs(availability), AsIs(id)))
-
+		WHERE roomId = %s;""", (availability, id))
+	conn.commit()
 	conn.close()
 
 def delete(id):
@@ -38,7 +38,7 @@ def delete(id):
 	cur = conn.cursor()
 
 	cur.execute("""DELETE FROM roomTable WHERE userId = %s;""", (id,))
-
+	conn.commit()
 	conn.close()
 
 

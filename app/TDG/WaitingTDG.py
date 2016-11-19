@@ -1,7 +1,6 @@
 #WaitingTDG
 import psycopg2
 from psycopg2.extensions import AsIs
-from waiting import Waiting
 
 
 def find(id):
@@ -27,7 +26,7 @@ def insert(waiting):
 	timeslot = timeslot.getId()
 
 	cur.execute("""INSERT INTO waitingTable(room, reservee, description, timeslot) VALUES 
-		(%s, %s, %s, %s);""", (AsIs(room), AsIs(reservee), AsIs(description), AsIs(timeslot)))
+		(%s, %s, %s, %s);""", (room, reservee, description, timeslot))
 
 	conn.close()
 
@@ -37,8 +36,8 @@ def update(id, roomId, userId, description, timeslotId):
 
 	cur.execute("""UPDATE waitingTable SET room = %s, reservee = %s, 
 		description = %s, timeslot = %s WHERE waitingId = %s;""", 
-		(AsIs(roomId), AsIs(userId), AsIs(description), AsIs(timeslotId), AsIs(id)))
-
+		(roomId, userId, description, timeslotId,id))
+	conn.commit()
 	conn.close()
 
 def delete(id):
@@ -46,7 +45,7 @@ def delete(id):
 	cur = conn.cursor()
 
 	cur.execute("""DELETE FROM waitingTable WHERE waitingId = %s;""", (id,))
-
+	conn.commit()
 	conn.close()
 
 

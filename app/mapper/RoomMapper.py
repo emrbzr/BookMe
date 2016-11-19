@@ -3,43 +3,43 @@ from app.core.room import Room
 import RoomIdMap
 import UnitOfWork
 
-def makeNew(self,roomId, lock):
+def makeNew(roomId, lock):
     room = Room(roomId, lock)
     RoomIdMap.addTo(room)
     UnitOfWork.registerNewRoom(room)
     return room
 
-def getRoom(self, roomId):
+def getRoom(roomId):
     room = RoomIdMap.find(roomId)
     result = []
     if room == None:
         result = RoomTDG.find(roomId)
-    if result == None:
-        return
-    else:
-        room = Room(result[0], result[1])
-        RoomIdMap.addTo(room)
-        return room
+        if result == None:
+            return
+        else:
+            room = Room(result[0], result[1])
+            RoomIdMap.addTo(room)
+    return room
 
-def setRoom(self, roomId):
+def setRoom(roomId):
     room = getRoom(roomId)
     room.setId(roomId)
     UnitOfWork.registerDirty(roomId)
 
-def deleteRoom(self, roomId):
+def delete(roomId):
     room = RoomIdMap.find(roomId)
     if room is not None:
         RoomIdMap.removeFrom(room)
     UnitOfWork.registerDeleted(room)
 #save all work
-def save():
+def done():
     UnitOfWork.commit()
 #adds room object
-def addRoom(room):
+def save(room):
     RoomTDG.insert(room)
 #updates room Object
-def updateRoom(room):
+def update(room):
     RoomTDG.update(room)
 #deletes room object
-def deleteRoom(room):
+def erase(room):
     RoomTDG.delete(room)

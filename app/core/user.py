@@ -5,6 +5,7 @@ class User:
     def  __init__(self):
         pass
     def __init__(self,userId, name,password):
+        self.userId = userId
         self.name = name
         self.password = password
 
@@ -20,3 +21,9 @@ class User:
 
     def setPassword(self, password):
         self.password = password
+
+    def getId(self):
+        return self.userId
+
+    def setId(self,userId):
+        self.userId = userId

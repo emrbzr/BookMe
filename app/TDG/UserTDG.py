@@ -17,20 +17,23 @@ def insert(user):
 	name = user.getName()
 	pw = user.getPassword()
 	cur.execute("""INSERT INTO userTable(password, name) VALUES
-  		(%s, %s);""", (AsIs(pw), AsIs(name)))
+  		(%s, %s);""", (pw, name))
+	conn.commit()
 	conn.close()
 
 def update(id, name, password):
 	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	cur.execute("""UPDATE userTable SET name = %s,
-  		password = %s WHERE userId = %s;""", (AsIs(name), AsIs(password), AsIs(id)))
+  		password = %s WHERE userId = %s;""", (name, password, id))
+	conn.commit()
 	conn.close()
 
 def delete(id):
 	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	cur.execute("""DELETE FROM userTable WHERE userId = %s;""", (id,))
+	conn.commit()
 	conn.close()
 
 

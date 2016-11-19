@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS timeslotTable (
 	endTime integer NOT NULL,
 	date DATE NOT NULL,
 	block integer NOT NULL,
+	userId integer NOT NULL,
+	FOREIGN KEY (userId) REFERENCES userTable (userId),
 	PRIMARY KEY (timeId)
 );
 
