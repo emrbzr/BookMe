@@ -1,3 +1,4 @@
+import RoomMapper
 # Directory Object
 class Directory:
 
@@ -9,7 +10,11 @@ class Directory:
     def getRoom(self,roomId):
         for index in range(len(self.roomList)):
             if self.roomList[index].getId() == roomId:
-                return self.roomList[index]
+                return self.roomList[index]à
+        #if not in roomlist try to find in idmap or db
+        foundRoom = RoomMapper.find(roomId)
+        self.roomList.append(foundRoom)
+        return foundRoom
 
     # Accessors and Mutators
     def getRoomList(self):

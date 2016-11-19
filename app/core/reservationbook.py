@@ -2,7 +2,7 @@ from reservation import Reservation
 from waiting import Waiting
 from collections import deque
 from datetime import datetime
-
+import ReservationMapper
 # ReservationBook object
 class ReservationBook:
 
@@ -16,11 +16,13 @@ class ReservationBook:
         # Check if room is available at specifie time
         if (self.available(room, time) == True):
             r = Reservation(room,holder,time,description,self.genRid())
+            ReservationMapper.registerNew(r)
             self.reservationList.append(r)
 
     # Method to add to the waiting list
     def addToWaitingList(self, room, holder, time, description):
         w = Waiting(room,holder,time,description,self.genWid())
+        WaitingMapper.registerNew(w)
         self.waitingList.append(w)
 
     # Method to modify reservation
@@ -33,6 +35,7 @@ class ReservationBook:
     def cancel(self,reservationId):
         r = self.getReservationById(reservationId)
         self.reservationList.remove(r)
+        ReservationMapper.deleterReservation(reservationId)
 
     # Method to update the waiting list
     def updateWaiting(self, roomId):
