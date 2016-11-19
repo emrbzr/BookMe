@@ -52,7 +52,8 @@ def findByDate(date):
 	conn = psycopg2.connect(database="development", user="postgres", password="sqlpw", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
-	cur.execute("""SELECT * FROM reservationTable WHERE date = %s;""", (date,))
+	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable 
+		ON (reservationTable.timeslot = timeslotTable.timeslotId) WHERE date = %s;""", (date,))
 	data = cur.fetchall()
 	
 	conn.close()
