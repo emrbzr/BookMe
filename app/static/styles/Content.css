@@ -90,3 +90,33 @@ html, body {
 .bottomright{
   border-bottom-right-radius: 5px;
 }
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: solid 1px #CCC;
+    padding: 10px;
+}
+.fixed {
+    max-width: 300px;
+    min-width: 300px;
+}
+.fluid {
+    width: 50%;
+}
+.demo {
+    width:900px;
+    height:300px;
+    border:1px solid #C0C0C0;
+    border-collapse:collapse;
+    padding:5px;
+}
+.demo th {
+    border:1px solid #C0C0C0;
+    padding:5px;
+    background:#F0F0F0;
+}
+.demo td {
+    border:1px solid #C0C0C0;
+    padding:5px;
+}

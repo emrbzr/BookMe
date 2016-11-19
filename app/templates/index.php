@@ -31,9 +31,118 @@
         <br>
         <div class="text-center">My Reservations:</div>
         <br>
-        <div class="text-center">You currently have no reservations!</div>
-        <br>
+
+        <table class="demo" align="center">
+
+          <thead>
+          <tr>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Room</th>
+            <th>Modify</th>
+            <th>Cancel</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>00:00</td>
+            <td>1/1/1111</td>
+            <td>Room 1</td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Modify Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Cancel Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>1/1/1111</td>
+            <td>Room 1</td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Modify Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Cancel Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>1/1/1111</td>
+            <td>Room 2</td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Modify Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Cancel Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>1/1/1111</td>
+            <td>Room 3</td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Modify Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Cancel Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>1/1/1111</td>
+            <td>Room 5</td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Modify Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+            <td><div class="panel panel-default">
+                <div class="panel-body">
+                  <div id="month" class="BottomPadder text-center">
+                    <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Cancel Reservation</div></a>
+                  </div>
+                </div>
+              </div></td>
+          </tr>
+          <tbody>
+        </table>
       </div>
+      <br>
       <br>
       <!-- table type for the button formatted in css file -->
       <div class="col-md-offset-5 col-md-2">
@@ -41,7 +150,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div id="month" class="BottomPadder text-center">
-                <a class="col-md-12" style="text-decoration:none;" href=" {{ url_for('month') }}"><div>Make A New Reservation</div></a>
+                <a class="col-md-12" style="text-decoration:none;" href="{{ url_for('month')}}"><div>Make A New Reservation</div></a>
               </div>
             </div>
           </div>
