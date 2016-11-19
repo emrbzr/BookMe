@@ -21,6 +21,10 @@ def getReservation(self, reservationId):
         ReservationIdMap.addTo(reservation)
         return reservation
 
+def findByDate(self, date):
+    result = ReservationTDG.findByDate(date)
+    return result
+
 def setReservation(self, reservationId):
     reservation = getReservation(reservationId)
     reservation.setId(reservationId)
