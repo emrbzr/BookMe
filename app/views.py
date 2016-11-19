@@ -155,7 +155,8 @@ def addNewReservation(month,day):
 				#fetch all rooms from the db
 				#insert into the directory
 				#initiateAction(room.getId())
-				#if room is not locked then
+				#if room is not locked thenA add
+				#Registry.makeNewReservation()
 				user = UserMapper.find(session['userId'])
 				timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,user.getId())
 				TimeslotMapper.save(timeSlot)
