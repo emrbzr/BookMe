@@ -6,7 +6,7 @@ from timeslot import Timeslot
 class Reservation:
 
     # Constructor
-    def __init__(self, room,holder,time,description,reservationId):
+    def __init__(self, room,holder,time,description):
         self.user = holder
         self.time = time
         self.room = room

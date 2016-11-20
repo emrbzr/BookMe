@@ -1,3 +1,4 @@
+from app.mapper import RoomMapper
 # Registry Object
 class Registry:
 
@@ -10,15 +11,17 @@ class Registry:
     def initiateAction(self,roomId):
         room = self.directory.getRoom(roomId)
         if(room.getLock() == False):
-            room.setLock(True)
+            roomMapper.setRoom(roomId,True)
+            return True
         else:
             print("Room Occupied")
+            return False
 
     # Method to end an action
     def endAction(self,roomId):
         room = self.directory.getRoom(roomId)
         if (room.getLock() == True):
-            room.setLock(False)
+            roomMapper.setRoom(roomId, False)
 
     # Method to make a reservation
     def makeNewReservation(self,roomId,holder,time,description):

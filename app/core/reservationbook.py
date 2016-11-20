@@ -16,8 +16,9 @@ class ReservationBook:
     def makeReservation(self, room, holder, time, description):
         # Check if room is available at specifie time
         if (self.available(room, time) == True):
-            r = Reservation(room,holder,time,description,self.genRid())
+            r = Reservation(room,holder,time,description)
             ReservationMapper.registerNew(r)
+            ReservationMapper.done()
             self.reservationList.append(r)
 
     # Method to add to the waiting list

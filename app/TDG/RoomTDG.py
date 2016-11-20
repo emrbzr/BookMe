@@ -13,6 +13,16 @@ def find(id):
 	#returns table row as list
 	return data
 
+def findAll():
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	cur = conn.cursor()
+	
+	cur.execute("""SELECT * FROM roomTable;""")
+	data = cur.fetchall()
+	conn.close()
+	#returns table row as list
+	return data
+
 def insert(room):
 	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()

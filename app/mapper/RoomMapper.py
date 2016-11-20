@@ -21,10 +21,25 @@ def find(roomId):
             RoomIdMap.addTo(room)
     return room
 
-def setRoom(roomId):
+#returns array of all rooms
+def findAll():
+    result = RoomTDG.findAll()
+    rooms = []
+    if result == None:
+        return
+    else:
+        for index, r in enumerate(result):
+            room = RoomIdMap.find(r[0])
+            if room == None:
+                room = Room(r[0], r[1])
+                RoomIdMap.addTo(room) 
+                rooms.append(room)
+    return rooms
+
+def setRoom(roomId, lock):
     room = find(roomId)
-    room.setId(roomId)
-    UnitOfWork.registerDirty(roomId)
+    room.setLock(lock)
+    update(room)
 
 def delete(roomId):
     room = RoomIdMap.find(roomId)

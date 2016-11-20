@@ -115,6 +115,25 @@ def chooseMonth(month):
 
 @app.route('/<month>/<day>',methods=['GET','POST'])
 def addNewReservation(month,day):
+	#create reservationBook
+	rListDb = ReservationMapper.findByDate(date)
+	reservationList = []
+	waitingList = []
+	for index, rId in enumerate(rListDb):
+		reservationList.append(ReservationMapper.find(rId[0]))
+		reservationBook = reservationBook(reservationList, waitingList)
+
+	#create directory
+	roomList = RoomMapper.findAll()
+	directory = Directory(roomList)
+
+	#create registry
+	registry = Registry(directory, reservationBook)
+
+	#view schedule
+	reservations = registry.viewSchedule()
+	#somehow display theses on schedule
+
 	if request.method == 'POST':
 		if request.form.getlist('chosenTime') is not None:
 			chosenTime = request.form.getlist('chosenTime')
@@ -151,21 +170,26 @@ def addNewReservation(month,day):
 					print(date)
 				else:
 					date = '2016-'+month+'-'+day
-				room = Room(1,True)
-				#fetch all rooms from the db
-				#insert into the directory
-				#initiateAction(room.getId())
-				#if room is not locked then
-				user = UserMapper.find(session['userId'])
-				timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,user.getId())
-				TimeslotMapper.save(timeSlot)
-				timeslotId = TimeslotMapper.findId(user.getId())
-				timeSlot.setId(timeslotId)
-				description = request.form['description']
-				processed_description = description.upper()
-				#fetch all reservations
-				#check if a reservatin for that time slot is
-				reservation = ReservationMapper.makeNewReservation(room,user,timeSlot,processed_description,timeslotId)
-				ReservationMapper.save(reservation)
+				
+				room = Room(1,False)
+
+
+				if registry.initiateAction(room.getId()):
+					#Instantiate parameters
+					user = UserMapper.find(session['userId'])
+					timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,user.getId())
+					TimeslotMapper.save(timeSlot)
+					timeslotId = TimeslotMapper.findId(user.getId())
+					timeSlot.setId(timeslotId)
+					description = request.form['description']
+					processed_description = description.upper()
+
+
+					#Make Reservation
+					registry.makeNewReservation(room.getId(),user,timeSlot,processed_description)
+				
+					registry.endAction(room.getId())
+
+
 
 	return render_template('add.html')
