@@ -11,6 +11,10 @@ from app.core.reservation import Reservation
 from app.core.timeslot import Timeslot
 from app.TDG import TimeslotTDG
 from app.mapper import TimeslotMapper
+from app.mapper import RoomMapper
+from app.core.directory import *
+from app.core.registry import *
+from app.core.reservationbook import ReservationBook
 from app.core.user import User
 #if 404 error render 404.html
 @app.errorhandler(404)
@@ -115,13 +119,40 @@ def chooseMonth(month):
 
 @app.route('/<month>/<day>',methods=['GET','POST'])
 def addNewReservation(month,day):
+
 	#create reservationBook
+	if month == 'september':
+		month = '09'
+	if month == 'october':
+		month = '10'
+	if month == 'november':
+		month = '11'
+	if month == 'december':
+		month = '12'
+	if month == 'january':
+		month = '01'
+	if month == 'february':
+		month = '02'
+	if month == 'march':
+		month = '03'
+	if month == 'april':
+		month = '04'
+	if month == 'may':
+		month = '05'
+	if month == 'june':
+		month = '06'
+	if month == 'july':
+		month = '07'
+	if month == 'august':
+		month = '08'
+	date = '2016-' + month + "-0" +day
+	print(date)
 	rListDb = ReservationMapper.findByDate(date)
 	reservationList = []
 	waitingList = []
 	for index, rId in enumerate(rListDb):
 		reservationList.append(ReservationMapper.find(rId[0]))
-		reservationBook = reservationBook(reservationList, waitingList)
+	reservationBook = ReservationBook(reservationList, waitingList)
 
 	#create directory
 	roomList = RoomMapper.findAll()
@@ -135,8 +166,9 @@ def addNewReservation(month,day):
 	#somehow display theses on schedule
 
 	if request.method == 'POST':
-		if request.form.getlist('chosenTime') is not None:
-			chosenTime = request.form.getlist('chosenTime')
+		if request.form.getlist('choose'):
+			chosenTime = request.form.getlist('choose')
+			print(chosenTime)
 			endTime = int(chosenTime[-1])
 			startTime = int(chosenTime[0])
 			block = endTime - startTime
@@ -170,7 +202,7 @@ def addNewReservation(month,day):
 					print(date)
 				else:
 					date = '2016-'+month+'-'+day
-				
+
 				room = Room(1,False)
 
 
@@ -187,7 +219,7 @@ def addNewReservation(month,day):
 
 					#Make Reservation
 					registry.makeNewReservation(room.getId(),user,timeSlot,processed_description)
-				
+
 					registry.endAction(room.getId())
 
 
