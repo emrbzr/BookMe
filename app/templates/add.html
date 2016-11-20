@@ -39,11 +39,11 @@
         <div class="panel panel-default">
           <div id="month" class="panel-body">
               <div id="relax" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">&nbsp;</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal1">Room 1</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal2">Room 2</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal3">Room 3</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal4">Room 4</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" data-toggle="modal" data-target="#modal5">Room 5</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center room1" data-toggle="modal" data-target="#modal1">Room 1</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center room2" data-toggle="modal" data-target="#modal2">Room 2</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center room3" data-toggle="modal" data-target="#modal3">Room 3</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center room4" data-toggle="modal" data-target="#modal4">Room 4</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center room5" data-toggle="modal" data-target="#modal5">Room 5</div>
               <!-- NOTE : WE WILL ONLY MAKE ROOM AVAILABILITY COLUMNS DYNAMIC. TIME COLUMN CAN BE HARD CODED. AND NO NEED TO GET THE VALUE
               BECAUSE WE WILL GET THE TIME VALUE IN THE MODAL PAGE(AKA POPUP) YOU CAN DELETE THIS COMMENT AFTER YOUR READ IT HYJAZ LOL-->
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 09.00</div>
@@ -200,6 +200,8 @@
           $(this).css("background", "#FFFFFF");
           $(this).css("color", "#333333");
         });
+
+
       });
       $(".killer").click(function(){
         alert("You Are Successful!!");

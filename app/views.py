@@ -76,11 +76,14 @@ def dashboard(user):
 		reservation1.append(reservation.getId())
 	return render_template('index.html',user=user, reservation=reservation1)
 
-@app.route('/dashboard/cancel')
+@app.route('/cancel/<reservationId>')
 @login_required
 @nocache
-def cancel():
-	return redirect(url_for('dashboard',user=session['user']))
+def cancel(reservationId):
+	
+	return redirect(url_for('dashboard', user=session['user']))
+
+
 @app.route('/month')
 @login_required
 @nocache

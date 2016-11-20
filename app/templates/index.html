@@ -44,7 +44,6 @@
               <th>Endtime</th>
               <th>Date</th>
               <th>Description</th>
-              <th>ReservationId</th>
               <th>Modify</th>
               <th>Cancel</th>
           </tr>
@@ -53,31 +52,31 @@
           <tr>
           {% set count = 0 %}
               {% for foo in reservation %}
-                  <td>{{ foo }}</td>
                   {% set count = count + 1 %}
-                  {% if count%6 == 0 %}
-                    {% block content %}
-                       <td><div class="panel panel-default">
-                            <div class="panel-body">
-                              <div id="month" class="BottomPadder text-center">
-                                  <a class="col-md-12" style="text-decoration:none;" href="{{ url_for('cancel') }}"><div>Modify Reservation</div></a>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        </td>
-                        <td><div class="panel panel-default">
-                            <div class="panel-body">
-                              <div id="month" class="BottomPadder text-center">
-                                <a class="col-md-12" style="text-decoration:none;" href="{{ url_for('cancel') }}"><div>Cancel Reservation</div></a>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        </tr>
-                        <tr>
-                    {%  endblock content %}
+                  {% if count%6 != 0 %}
+                  <td>{{ foo }}</td>
                   {% endif %}
+                      {% if count%6 == 0 %}
+                              <td><div class="panel panel-default">
+                                  <div class="panel-body">
+                                      <div id="month" class="BottomPadder text-center">
+                                          <a class="col-md-12" style="text-decoration:none;"><div class="modify">{{ foo }}</div></a>
+                                      </div>
+                                  </div>
+                              </div>
+                              </td>
+                              </td>
+                              <td><div class="panel panel-default">
+                                  <div class="panel-body">
+                                      <div id="month" class="BottomPadder text-center"><a class="col-md-12" style="text-decoration:none;"><div class="cancel">{{ foo }}</div></a></div>
+                                  </div>
+                              </div>
+                              </td>
+                          </tr>
+                          <tr>
+
+                      {% endif %}
+
               {% endfor %}
           <tbody>
         </table>
@@ -113,13 +112,18 @@
           $(this).css("background", "#FFFFFF");
           $(this).css("color", "#333333");
         });
+        $("#month .cancel").click(function() {
+             reservationId= $(this).html();
+              window.alert(reservationId);
+                window.location.href = "/cancel/" + reservationId;
+        });
+         $("#month .modify").click(function() {
+             reservationId= $(this).html();
+              window.alert(reservationId);
+             window.location.href = "/cancel/" + reservationId;
+
+        });
       });
-      <!-- hiding the page adress from the bottom bar, cannot right click and copy the adress-->
-     // !$(".col-md-12").click(function(){
-      function form_submit() {
-          document.getElementById("cancelReservation").submit();
-      }
-      //});
     </script>
     <!--[endif]-->
   </body>
