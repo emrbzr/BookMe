@@ -29,6 +29,25 @@ def find(waitingId):
 
     return waiting
 
+def findAll():
+    return WaitingTDG.findAll()
+
+    result = WaitingTDG.findAll()
+    waitings = []
+    if result == None:
+        return
+    else:
+        for index, r in enumerate(result):
+            waitings = WaitingIdMap.find(r[0])
+            if waiting == None:
+                room = RoomMapper.find(r[1])
+                reservee = UserMapper.find(r[2])
+                timeslot = TimeslotMapper.find(r[4])
+                waiting = Waiting(room, r[3], reservee, timeslot)
+                WaitingIdMap.add(waiting)
+                waitings.append(waiting)
+    return waitings
+
 
 def set(waitingId):
     waiting = find(waitingId)

@@ -14,9 +14,27 @@ from app.mapper import TimeslotMapper
 from app.mapper import RoomMapper
 from app.core.directory import *
 from app.core.registry import *
+from app.mapper import WaitingMapper
 from app.core.reservationbook import ReservationBook
 from app.core.user import User
 #if 404 error render 404.html
+from app.TDG import ReservationTDG
+
+rListDb = ReservationMapper.findAll()
+reservationList = []
+waitingList = []
+waitingList = WaitingMapper.findAll()
+for index, rId in enumerate(rListDb):
+	reservationList.append(ReservationMapper.find(rId.getId()))
+reservationBook = ReservationBook(reservationList, waitingList)
+
+# create directory
+roomList = []
+directory = Directory(roomList)
+
+# create registry
+registry = Registry(directory, reservationBook)
+
 @app.errorhandler(404)
 def not_found_error(error):
 	return render_template('404.html')
@@ -74,11 +92,29 @@ def dashboard(user):
 		print(reservation)
 		reservation1.append(reservation.getRoom().getId())
 		reservation1.append(reservation.getTimeslot().getStartTime())
-		reservation1.append(reservation.getTimeslot().getEndTime())
+		endTime = reservation.getTimeslot().getEndTime() + 1
+		reservation1.append(endTime)
 		reservation1.append(reservation.getTimeslot().getDate())
 		reservation1.append(reservation.getDescription())
-
+		reservation1.append(reservation.getId())
 	return render_template('index.html',user=user, reservation=reservation1)
+
+
+@app.route('/cancel/<reservationId>')
+@login_required
+@nocache
+def cancel(reservationId):
+	registry.getDirectory().setRoomList(RoomMapper.findAll())
+	registry.getReservationBook().setReservationList(ReservationMapper.findAll())
+	registry.getReservationBook().setWaitingList(WaitingMapper.findAll())
+	roomId = 1
+	registry.initiateAction(roomId)
+	registry.cancelReservation(reservationId)
+	registry.endAction(roomId)
+	ReservationTDG.delete(reservationId)
+	TimeslotTDG.delete(reservationId)
+	return redirect(url_for('dashboard', user=session['user']))
+
 
 @app.route('/month')
 @login_required
@@ -119,9 +155,7 @@ def chooseMonth(month):
 
 @app.route('/<month>/<day>',methods=['GET','POST'])
 def addNewReservation(month,day):
-
-	#create reservationBook
-	if month == 'september':
+	'''if month == 'september':
 		month = '09'
 	if month == 'october':
 		month = '10'
@@ -145,32 +179,73 @@ def addNewReservation(month,day):
 		month = '07'
 	if month == 'august':
 		month = '08'
-	date = '2016-' + month + "-0" +day
-	print(date)
-	rListDb = ReservationMapper.findByDate(date)
-	reservationList = []
-	waitingList = []
-	for index, rId in enumerate(rListDb):
-		reservationList.append(ReservationMapper.find(rId[0]))
-	reservationBook = ReservationBook(reservationList, waitingList)
+	if day < 10:
+		date = '2016-' + month + '-0' + day
+	else:
+		date = '2016-' + month + '-' + day
 
-	#create directory
-	roomList = RoomMapper.findAll()
-	directory = Directory(roomList)
 
-	#create registry
-	registry = Registry(directory, reservationBook)
+	unavailableStart = []
+	unavailableEnd = []
+	unavailableRoom = []
+	room1 = []
+	room2 = []
+	room3 = []
+	room4 = []
+	room5 = []
 
-	#view schedule
-	reservations = registry.viewSchedule()
-	#somehow display theses on schedule
+	rooms = []
+	for i in range(5):
+		availabilities = []
+		for j in range(12):
+			availabilities.append("Available")
+		rooms.append(availabilities)
 
+
+	allReservation = ReservationTDG.findByDate(date)
+	for index, roomtime in allReservation:
+		if roomtime[1] == 1:
+			if roomtime[6] == 9:
+				rooms[0][0] = "unavailable"
+				if roomtime[7] == 10:
+					rooms[0][0] = "unavailable"
+			if roomtime[6] == 10:
+				room1[0][2] = "unavailable"
+				if roomtime[7] == 11:
+					room1[3] = "unavailable"
+			if roomtime[6] == 11:
+				room1[3] = "unavailable"
+				if roomtime[7] == 12:
+					room1[4] = "unavailable"
+			if roomtime[6] == 12:
+				room1[4] = "unavailable"
+				if roomtime[7] == 13:
+					room1[5] = "unavailable"
+			if roomtime[6] == 13:
+				room1[5] = "unavailable"
+				if roomtime[7] == 14:
+					room1[6] = "unavailable"
+			if roomtime[6] == 15:
+				room1[6] = "unavailable"
+				if roomtime[7] == 16:
+					room1[7] = "unavailable"
+			if roomtime[6] == 16:
+				room1[2] = "unavailable"
+				if roomtime[7] == 17:
+					room1[7] = "unavailable"
+		unavailableStart.append(roomtime[6])
+		unavailableEnd.append(roomtime[7])
+		unavailableRoom.append(roomtime[1])
+
+	print(allReservation)'''
 	if request.method == 'POST':
-		if request.form.getlist('choose'):
-			chosenTime = request.form.getlist('choose')
+		if request.form.getlist('chosenTime'):
+			print("chosenTime")
+			chosenTime = request.form.getlist('chosenTime')
 			print(chosenTime)
 			endTime = int(chosenTime[-1])
 			startTime = int(chosenTime[0])
+			roomId = request.form.getlist('room')
 			block = endTime - startTime
 			if block < 3:
 				if month == 'september':
@@ -202,26 +277,22 @@ def addNewReservation(month,day):
 					print(date)
 				else:
 					date = '2016-'+month+'-'+day
-
-				room = Room(1,False)
-
-
+				room = Room(roomId[0],False)
+				block = block + 1
 				if registry.initiateAction(room.getId()):
 					#Instantiate parameters
 					user = UserMapper.find(session['userId'])
-					timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,user.getId())
+					timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,block, user.getId())
 					TimeslotMapper.save(timeSlot)
 					timeslotId = TimeslotMapper.findId(user.getId())
 					timeSlot.setId(timeslotId)
 					description = request.form['description']
 					processed_description = description.upper()
-
-
 					#Make Reservation
-					registry.makeNewReservation(room.getId(),user,timeSlot,processed_description)
-
-					registry.endAction(room.getId())
-
-
-
+					reservation = ReservationMapper.makeNewReservation(room, user, timeSlot, processed_description,timeslotId)
+					ReservationMapper.save(reservation)
+				registry.endAction(room.getId())
 	return render_template('add.html')
+
+# annee mois jour
+# fetch dans le timeslottable de ses meme temps

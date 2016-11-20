@@ -7,12 +7,22 @@ def find(id):
 	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
-	cur.execute("""SELECT * FROM timeslotTable WHERE timeId = %s;""", (id,))
+	cur.execute("""SELECT * FROM timeslotTable WHERE timeid = %s;""", (id,))
 	data = cur.fetchall()
 	conn.close()
 	#returns table row as list
 	return data
 
+def findUser(userid):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+							port="5432")
+	cur = conn.cursor()
+
+	cur.execute("""SELECT * FROM timeslotTable WHERE userid = %s;""", (userid,))
+	data = cur.fetchall()
+	conn.close()
+	# returns table row as list
+	return data
 def insert(timeslot):
 	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
@@ -21,7 +31,7 @@ def insert(timeslot):
 	endTime = timeslot.getEndTime()
 	date = timeslot.getDate()
 	block = timeslot.getBlock()
-	userId = timeslot.getUser()
+	userId = timeslot.getId()
 
 	cur.execute("""INSERT INTO timeslotTable(startTime, endTime, date, block,userId) VALUES
 		(%s, %s, %s, %s, %s);""", (startTime, endTime, date, block,userId))
@@ -41,7 +51,7 @@ def delete(id):
 	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
-	cur.execute("""DELETE FROM timeslotTable WHERE timeslotId = %s;""", (id,))
+	cur.execute("""DELETE FROM timeslotTable WHERE timeid = %s;""", (id,))
 	conn.commit()
 	conn.close()
 

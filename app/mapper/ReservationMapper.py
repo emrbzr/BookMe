@@ -30,10 +30,30 @@ def find(reservationId):
             holder = User(holder[0][0],holder[0][1],holder[0][2])
             timeslot = TimeslotTDG.find(result[0][4])
             print(timeslot)
-            timeslot = Timeslot(timeslot[0][1],timeslot[0][2],timeslot[0][3],timeslot[0][0])
+            timeslot = Timeslot(timeslot[0][1],timeslot[0][2],timeslot[0][3],timeslot[0][4],timeslot[0][0])
             reservation = Reservation(room, holder,timeslot,result[0][2],timeslot.getId())
             ReservationIdMap.addTo(reservation)
     return reservation
+
+def findAll():
+    result = ReservationTDG.findAll()
+    allReservations= []
+    if result == None:
+        return
+    else:
+        for index, r in enumerate(result):
+            reservation = ReservationIdMap.find(r[0])
+            if reservation == None:
+                room = RoomTDG.find(result[0][1])
+                room = Room(room[0][0], room[0][1])
+                holder = UserTDG.find(result[0][3])
+                holder = User(holder[0][0], holder[0][1], holder[0][2])
+                timeslot = TimeslotTDG.find(result[0][4])
+                timeslot = Timeslot(timeslot[0][1], timeslot[0][2], timeslot[0][3],timeslot[0][4], timeslot[0][0])
+                reservation = Reservation(room, holder, timeslot, result[0][2], timeslot.getId())
+                allReservations.append(reservation)
+                ReservationIdMap.addTo(reservation)
+    return allReservations
 
 def findByDate(date):
     return ReservationTDG.findByDate(date)
@@ -51,11 +71,12 @@ def setReservation(reservationId):
     reservation.setId(reservationId)
     UnitOfWork.registerDirty(reservationId)
 
-def deleteReservation(reservationId):
+def delete(reservationId):
     reservation = ReservationIdMap.find(reservationId)
     if reservation is not None:
         ReservationIdMap.removeFrom(reservation)
     UnitOfWork.registerDeleted(reservation)
+    UnitOfWork.commit()
 
 #save all work
 def done():
@@ -67,5 +88,5 @@ def save(reservation):
 def update(reservation):
     ReservationTDG.update(reservation)
 #deletes room object
-def delete(reservation):
-    ReservationTDG.delete(reservation)
+def erase(reservationid):
+    ReservationTDG.delete(reservationid)

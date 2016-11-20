@@ -49,8 +49,15 @@ def delete(id):
 	conn.close()
 
 
-
-
+def findAll():
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+							port="5432")
+	cur = conn.cursor()
+	cur.execute("""SELECT * FROM waitingTable """)
+	data = cur.fetchall()
+	conn.close()
+	# returns table row as list
+	return data
 
 
 

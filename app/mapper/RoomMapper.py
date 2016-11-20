@@ -17,7 +17,7 @@ def find(roomId):
         if result == None:
             return
         else:
-            room = Room(result[0], result[1])
+            room = Room(result[0][0], result[0][1])
             RoomIdMap.addTo(room)
     return room
 
@@ -39,7 +39,7 @@ def findAll():
 def setRoom(roomId, lock):
     room = find(roomId)
     room.setLock(lock)
-    update(room)
+    update(room.getId(),room.getLock())
 
 def delete(roomId):
     room = RoomIdMap.find(roomId)
@@ -53,8 +53,8 @@ def done():
 def save(room):
     RoomTDG.insert(room)
 #updates room Object
-def update(room):
-    RoomTDG.update(room)
+def update(room,availability):
+    RoomTDG.update(room, availability)
 #deletes room object
 def erase(room):
     RoomTDG.delete(room)

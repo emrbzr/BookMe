@@ -23,7 +23,7 @@
                         <a href="{{ url_for('dashboard',user=session['user']) }}">My Profile</a>
                     </div>
                     <div class="col-md-6 text-center">
-                        <a href="/logout">Logout : Emir</a>
+                        <a href="/logout">Logout</a>
                     </div>
                 </div>
             </div>
@@ -39,13 +39,14 @@
         <div class="panel panel-default">
           <div id="month" class="panel-body">
               <div id="relax" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">&nbsp;</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal1">Room 1</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal2">Room 2</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal3">Room 3</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal4">Room 4</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal1">Room 1</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal2">Room 2</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal3">Room 3</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal4">Room 4</div>
               <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" data-toggle="modal" data-target="#modal5">Room 5</div>
               <!-- NOTE : WE WILL ONLY MAKE ROOM AVAILABILITY COLUMNS DYNAMIC. TIME COLUMN CAN BE HARD CODED. AND NO NEED TO GET THE VALUE
               BECAUSE WE WILL GET THE TIME VALUE IN THE MODAL PAGE(AKA POPUP) YOU CAN DELETE THIS COMMENT AFTER YOUR READ IT HYJAZ LOL-->
+
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 09.00</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
@@ -201,8 +202,9 @@
           $(this).css("color", "#333333");
         });
       });
-      $(".killer").click(function(){
-        alert("You Are Successful!!");
+
+      $('div.number').click(function() {
+          var number = parseInt($('.number').text());
       });
       var s, m, i;
       var interval

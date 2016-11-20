@@ -11,7 +11,7 @@ class Registry:
     def initiateAction(self,roomId):
         room = self.directory.getRoom(roomId)
         if(room.getLock() == False):
-            roomMapper.setRoom(roomId,True)
+            RoomMapper.setRoom(roomId,True)
             return True
         else:
             print("Room Occupied")
@@ -21,7 +21,9 @@ class Registry:
     def endAction(self,roomId):
         room = self.directory.getRoom(roomId)
         if (room.getLock() == True):
-            roomMapper.setRoom(roomId, False)
+            print("Room was set False")
+            RoomMapper.update(roomId, False)
+
 
     # Method to make a reservation
     def makeNewReservation(self,roomId,holder,time,description):

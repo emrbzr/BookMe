@@ -2,7 +2,7 @@
 class Timeslot:
 
     # Constructor
-    def __init__(self, startTime, endTime, date, timeId):
+    def __init__(self, startTime, endTime, date, block, timeId):
         self.startTime = startTime
         self.endTime = endTime
         self.date = date

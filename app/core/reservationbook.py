@@ -36,8 +36,9 @@ class ReservationBook:
     # Method to cancel reservation
     def cancel(self,reservationId):
         r = self.getReservationById(reservationId)
-        self.reservationList.remove(r)
-        ReservationMapper.deleterReservation(reservationId)
+        print(self.reservationList)
+        #self.reservationList.remove(r)
+        ReservationMapper.delete(reservationId)
 
     # Method to update the waiting list
     def updateWaiting(self, roomId):

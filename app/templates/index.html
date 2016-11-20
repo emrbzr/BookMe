@@ -50,32 +50,36 @@
           </thead>
           <tbody>
           <tr>
-          {% set count = 0 %}
+          {% set count = 1 %}
               {% for foo in reservation %}
-                  <td>{{ foo }}</td>
-                  {% set count = count + 1 %}
-                  {% if count%5 == 0 %}
-                    {% block content %}
-                        <td><div class="panel panel-default">
-                            <div class="panel-body">
+                    {% if count == 2 %}
+                        <td>{{ foo }}:00</td>
+                    {% endif %}
+                    {% if count != 3 and count != 6 and count != 2%}
+                        <td>{{ foo }}</td>
+                    {% endif %}
+                    {% if count == 3 %}
+                      <td>{{ foo }}: 00</td>
+                    {% endif %}
+                  {% if count == 6 %}
+                      <td><div class="panel panel-default">
+                          <div class="panel-body">
                               <div id="month" class="BottomPadder text-center">
-                                <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Modify Reservation</div></a>
+                                  <a class="col-md-12" style="text-decoration:none;"><div class="modify">{{ foo }}</div></a>
                               </div>
-                            </div>
                           </div>
-                        </td>
-                        <td><div class="panel panel-default">
-                            <div class="panel-body">
-                              <div id="month" class="BottomPadder text-center">
-                                <a class="col-md-12" style="text-decoration:none;" href="add.php"><div>Cancel Reservation</div></a>
-                              </div>
-                            </div>
+                      </div>
+                      </td>
+                      <td><div class="panel panel-default">
+                          <div class="panel-body">
+                              <div id="month" class="BottomPadder text-center"><a class="col-md-12" style="text-decoration:none;"><div class="cancel">{{ foo }}</div></a></div>
                           </div>
-                        </td>
-                        </tr>
-                        <tr>
-                    {%  endblock content %}
+                      </div>
+                      </td>
+                      </tr>
+                      {% set count = 0 %}
                   {% endif %}
+                  {% set count = count + 1 %}
               {% endfor %}
           <tbody>
         </table>
@@ -111,11 +115,18 @@
           $(this).css("background", "#FFFFFF");
           $(this).css("color", "#333333");
         });
+        $("#month .cancel").click(function() {
+             reservationId= $(this).html();
+
+                window.location.href = "/cancel/" + reservationId;
+        });
+         $("#month .modify").click(function() {
+             reservationId= $(this).html();
+              window.alert(reservationId);
+             window.location.href = "/cancel/" + reservationId;
+
+        });
       });
-      <!-- hiding the page adress from the bottom bar, cannot right click and copy the adress-->
-     // !$(".col-md-12").click(function(){
-        
-      //});
     </script>
     <!--[endif]-->
   </body>
