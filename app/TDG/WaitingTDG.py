@@ -59,6 +59,17 @@ def findAll():
 	# returns table row as list
 	return data
 
+def findByRoom(roomId, date):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	cur = conn.cursor()
+	
+	cur.execute("""SELECT waitingId, room, reservee, timeslot, startTime, endTime FROM waitingTable LEFT OUTER JOIN timeslotTable
+		ON (waitingTable.timeslot = timeslotTable.timeid) WHERE room = %s AND date = %s;""", (roomId, date))
+	data = cur.fetchall()
+
+	conn.close()
+	return data
+
 
 
 	
