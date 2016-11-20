@@ -11,6 +11,7 @@ from app.core.reservation import Reservation
 from app.core.timeslot import Timeslot
 from app.TDG import TimeslotTDG
 from app.mapper import TimeslotMapper
+from app.core.registry import Registry
 from app.core.user import User
 #if 404 error render 404.html
 @app.errorhandler(404)
@@ -80,9 +81,11 @@ def dashboard(user):
 @login_required
 @nocache
 def cancel(reservationId):
-	
+	roomId = Registry().getReservationBook(reservationId).getRoom().getId()
+	Registry.initiateAction(roomId)
+	Registry.cancelReservation(reservationId)
+	Registry.endAction(roomId)
 	return redirect(url_for('dashboard', user=session['user']))
-
 
 @app.route('/month')
 @login_required
