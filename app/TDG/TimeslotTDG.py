@@ -43,7 +43,7 @@ def update(id, st, et, date, block):
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE timeslotTable SET startTime = %s, endTime = %s,
-		date = %s, block = %s WHERE waitingId = %s;""", (st, et, date, block, id))
+		date = %s, block = %s WHERE timeid = %s;""", (st, et, date, block, id))
 	conn.commit()
 	conn.close()
 

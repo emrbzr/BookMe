@@ -1,27 +1,20 @@
 from app import app
 from .decorators import *
-from .models import *
 from flask import render_template, request
-from app.TDG import UserTDG
-from app.TDG import ReservationTDG
 from app.mapper import ReservationMapper
 from app.mapper import UserMapper
-from app.core.room import Room
-from app.core.reservation import Reservation
-from app.core.timeslot import Timeslot
-from app.TDG import TimeslotTDG
-from app.mapper import TimeslotMapper
-from app.mapper import RoomMapper
-from app.core.directory import *
-from app.core.registry import *
 from app.mapper import WaitingMapper
-from app.core.reservationbook import ReservationBook
-from app.core.user import User
+from app.mapper import TimeslotMapper
+from app.core.room import Room
+from app.core.registry import *
+from app.core.directory import *
 from app.core import update
-#if 404 error render 404.html
-from app.TDG import ReservationTDG
+from app.core.reservationbook import ReservationBook
 from app.core import checkAvailabilities
 from app.TDG import WaitingTDG
+from app.TDG import ReservationTDG
+from app.TDG import TimeslotTDG
+
 rListDb = ReservationMapper.findAll()
 reservationList = []
 waitingList = []
@@ -175,11 +168,18 @@ def modify(reservationId):
 	allResDateRoom = ReservationTDG.findDateRoom(roomId,date)
 	rTime = checkAvailabilities.checkModifyAvail(allResDateRoom)
 	if request.method == 'POST':
-		allTime = request.form.getlist('time')
-		block = allTime[1] - allTime[0]
-		TimeslotTDG.update(timeslot[0][0],allTime[0],allTime[1],allTime[0][3],block)
+		allTime = request.form.getlist('chosenTime')
+		block = int(allTime[1]) + 1 - int(allTime[0])
+		starttime = int(allTime[0])
+		endtime = int(allTime[1])
+		print(timeslot[0][0])
+		print(timeslot[0][3])
+		print(starttime)
+		print(endtime)
+		print(block)
+		TimeslotTDG.update(timeslot[0][0],starttime,endtime,timeslot[0][3],block)
 		return redirect(url_for('dashboard', user=session['user']))
-	return render_template('modify.html', reservationId=reservationId)
+	return render_template('modify.html', rooms=rTime)
 
 
 @app.route('/month')

@@ -2,56 +2,57 @@ from app.TDG import ReservationTDG
 
 def checkModifyAvail(reservations):
     rooms = []
-    for i in range(12):
+    for i in range(13):
         rooms.append("Available")
     rooms[0] = reservations[0][1]
     for roomtime in reservations:
         if roomtime[6] == 9:
             rooms[1] = "unavailable"
-        if roomtime[7] == 10:
-            rooms[1] = "unavailable"
+            if roomtime[7] == 10:
+                rooms[2] = "unavailable"
         if roomtime[6] == 10:
             rooms[2] = "unavailable"
-        if roomtime[7] == 11:
-            rooms[2] = "unavailable"
+            if roomtime[7] == 11:
+                rooms[3] = "unavailable"
         if roomtime[6] == 11:
             rooms[3] = "unavailable"
-        if roomtime[7] == 12:
-            rooms[3] = "unavailable"
+            if roomtime[7] == 12:
+                rooms[4] = "unavailable"
         if roomtime[6] == 12:
             rooms[4] = "unavailable"
-        if roomtime[7] == 13:
-            rooms[4] = "unavailable"
+            if roomtime[7] == 13:
+                rooms[5] = "unavailable"
         if roomtime[6] == 13:
             rooms[5] = "unavailable"
-        if roomtime[7] == 14:
-            rooms[5] = "unavailable"
+            if roomtime[7] == 14:
+                rooms[6] = "unavailable"
         if roomtime[6] == 14:
             rooms[6] = "unavailable"
-        if roomtime[7] == 15:
-            rooms[6] = "unavailable"
+            if roomtime[7] == 15:
+                rooms[7] = "unavailable"
         if roomtime[6] == 15:
             rooms[7] = "unavailable"
-        if roomtime[7] == 16:
-            rooms[7] = "unavailable"
+            if roomtime[7] == 16:
+                rooms[8] = "unavailable"
         if roomtime[6] == 16:
             rooms[8] = "unavailable"
-        if roomtime[7] == 17:
-            rooms[8] = "unavailable"
+            if roomtime[7] == 17:
+                rooms[9] = "unavailable"
         if roomtime[6] == 17:
             rooms[9] = "unavailable"
-        if roomtime[7] == 18:
-            rooms[9] = "unavailable"
+            if roomtime[7] == 18:
+                rooms[10] = "unavailable"
         if roomtime[6] == 18:
             rooms[10] = "unavailable"
-        if roomtime[7] == 19:
-            rooms[10] = "unavailable"
+            if roomtime[7] == 19:
+                rooms[11] = "unavailable"
         if roomtime[6] == 19:
             rooms[11] = "unavailable"
-        if roomtime[7] == 20:
-            rooms[11] = "unavailable"
+            if roomtime[7] == 20:
+                rooms[12] = "unavailable"
         if roomtime[6] == 20:
             rooms[12] = "unavailable"
+
     return rooms
 def checkAvailabilities(date):
     rooms = []

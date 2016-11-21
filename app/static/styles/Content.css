@@ -42,6 +42,19 @@ html, body {
 .panel-body {
     padding: 0px;
 }
+.modify {
+    background: rgba(219,219,219,1);
+    background: -moz-linear-gradient(left, rgba(219,219,219,1) 0%, rgba(212,212,212,1) 50%, rgba(204,204,204,1) 51%, rgba(247,247,247,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(219,219,219,1)), color-stop(50%, rgba(212,212,212,1)), color-stop(51%, rgba(204,204,204,1)), color-stop(100%, rgba(247,247,247,1)));
+    background: -webkit-linear-gradient(left, rgba(219,219,219,1) 0%, rgba(212,212,212,1) 50%, rgba(204,204,204,1) 51%, rgba(247,247,247,1) 100%);
+    background: -o-linear-gradient(left, rgba(219,219,219,1) 0%, rgba(212,212,212,1) 50%, rgba(204,204,204,1) 51%, rgba(247,247,247,1) 100%);
+    background: -ms-linear-gradient(left, rgba(219,219,219,1) 0%, rgba(212,212,212,1) 50%, rgba(204,204,204,1) 51%, rgba(247,247,247,1) 100%);
+    background: linear-gradient(to right, rgba(219,219,219,1) 0%, rgba(212,212,212,1) 50%, rgba(204,204,204,1) 51%, rgba(247,247,247,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#f7f7f7', GradientType=1 );
+    color: #FFFFFF;
+    border: 0;
+    font-weight: bold;
+}
 #month>.col-md-2 {
     padding: 2% 1% 2% 1%;
     transition: background 1s, color 0.75s;
