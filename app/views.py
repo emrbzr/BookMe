@@ -17,9 +17,11 @@ from app.core.registry import *
 from app.mapper import WaitingMapper
 from app.core.reservationbook import ReservationBook
 from app.core.user import User
+from app.core import update
 #if 404 error render 404.html
 from app.TDG import ReservationTDG
-
+from app.core import checkAvailabilities
+from app.TDG import WaitingTDG
 rListDb = ReservationMapper.findAll()
 reservationList = []
 waitingList = []
@@ -87,16 +89,17 @@ def logout():
 def dashboard(user):
 	session['user'] = user
 	reservation1 = []
-	userReservation = ReservationMapper.findByUser(session['userId'])
-	for index, reservation in enumerate(userReservation):
+	userReservation = ReservationTDG.findUserRes(session['userId'])
+
+	for reservation in userReservation:
 		print(reservation)
-		reservation1.append(reservation.getRoom().getId())
-		reservation1.append(reservation.getTimeslot().getStartTime())
-		endTime = reservation.getTimeslot().getEndTime() + 1
+		reservation1.append(reservation[1])
+		reservation1.append(reservation[6])
+		endTime = reservation[7] + 1
 		reservation1.append(endTime)
-		reservation1.append(reservation.getTimeslot().getDate())
-		reservation1.append(reservation.getDescription())
-		reservation1.append(reservation.getId())
+		reservation1.append(reservation[8])
+		reservation1.append(reservation[2])
+		reservation1.append(reservation[0])
 	return render_template('index.html',user=user, reservation=reservation1)
 
 
@@ -107,12 +110,29 @@ def cancel(reservationId):
 	registry.getDirectory().setRoomList(RoomMapper.findAll())
 	registry.getReservationBook().setReservationList(ReservationMapper.findAll())
 	registry.getReservationBook().setWaitingList(WaitingMapper.findAll())
-	roomId = 1
+	reservation = ReservationTDG.find(reservationId)
+	print(reservation)
+	roomId = reservation[0][1]
+	print(reservation[0][4])
+	timeslot = TimeslotTDG.find(reservation[0][4])
+	print(timeslot[0][4])
 	registry.initiateAction(roomId)
 	registry.cancelReservation(reservationId)
 	registry.endAction(roomId)
 	ReservationTDG.delete(reservationId)
 	TimeslotTDG.delete(reservationId)
+	roomsAvailable = checkAvailabilities.checkAvailabilities(timeslot[0][3])
+	if(roomId == 1):
+		update.updateWaiting(roomId,timeslot[0][3],roomsAvailable[0])
+	if(roomId == 2):
+		update.updateWaiting(roomId, timeslot[0][3], roomsAvailable[1])
+	if(roomId == 3):
+		update.updateWaiting(roomId, timeslot[0][3], roomsAvailable[2])
+	if(roomId == 4):
+		update.updateWaiting(roomId, timeslot[0][3], roomsAvailable[3])
+	if(roomId == 5):
+		update.updateWaiting(roomId, timeslot[0][3], roomsAvailable[4])
+
 	return redirect(url_for('dashboard', user=session['user']))
 
 
@@ -156,338 +176,100 @@ def chooseMonth(month):
 @app.route('/<month>/<day>',methods=['GET','POST'])
 def addNewReservation(month,day):
 	if month == 'september':
-		month = '09'
+		m = '09'
 	if month == 'october':
-		month = '10'
+		m = '10'
 	if month == 'november':
-		month = '11'
+		m = '11'
 	if month == 'december':
-		month = '12'
+		m = '12'
 	if month == 'january':
-		month = '01'
+		m = '01'
 	if month == 'february':
-		month = '02'
+		m = '02'
 	if month == 'march':
-		month = '03'
+		m = '03'
 	if month == 'april':
-		month = '04'
+		m = '04'
 	if month == 'may':
-		month = '05'
+		m = '05'
 	if month == 'june':
-		month = '06'
+		m = '06'
 	if month == 'july':
-		month = '07'
+		m = '07'
 	if month == 'august':
-		month = '08'
+		m = '08'
 	if day < 10:
-		date = '2016-' + month + '-0' + day
+		date = '2016-' + m + '-0' + day
 	else:
-		date = '2016-' + month + '-' + day
+		date = '2016-' + m + '-' + day
 
-	rooms = []
-	for i in range(5):
-		availabilities = []
-		for j in range(12):
-			availabilities.append("Available")
-		rooms.append(availabilities)
-
-	allReservation = ReservationTDG.findByDate(date)
-	print(allReservation)
-	print("all Reservation")
-	for roomtime in allReservation:
-		print(roomtime[1])
-		if roomtime[1] == 1:
-			print(roomtime[0])
-			if roomtime[6] == 9:
-				rooms[0][0] = "unavailable"
-				if roomtime[7] == 10:
-					rooms[0][1] = "unavailable"
-			if roomtime[6] == 10:
-				rooms[0][1] = "unavailable"
-				if roomtime[7] == 11:
-					rooms[0][2] = "unavailable"
-			if roomtime[6] == 11:
-				rooms[0][2] = "unavailable"
-				if roomtime[7] == 12:
-					rooms[0][3] = "unavailable"
-			if roomtime[6] == 12:
-				rooms[0][3] = "unavailable"
-				if roomtime[7] == 13:
-					rooms[0][4] = "unavailable"
-			if roomtime[6] == 13:
-				rooms[0][4] = "unavailable"
-				if roomtime[7] == 14:
-					rooms[0][5] = "unavailable"
-			if roomtime[6] == 15:
-				rooms[0][5] = "unavailable"
-				if roomtime[7] == 16:
-					rooms[0][6] = "unavailable"
-			if roomtime[6] == 16:
-				rooms[0][6] = "unavailable"
-				if roomtime[7] == 17:
-					rooms[0][7] = "unavailable"
-			if roomtime[6] == 17:
-				rooms[0][7] = "unavailable"
-				if roomtime[7] == 18:
-					rooms[0][8] = "unavailable"
-			if roomtime[6] == 18:
-				rooms[0][8] = "unavailable"
-				if roomtime[7] == 19:
-					rooms[0][9] = "unavailable"
-			if roomtime[6] == 19:
-				rooms[0][9] = "unavailable"
-				if roomtime[7] == 20:
-					rooms[0][10] = "unavailable"
-			if roomtime[6] == 20:
-				rooms[0][10] = "unavailable"
-				if roomtime[7] == 21:
-					rooms[0][11] = "unavailable"
-			if roomtime[7] == 21:
-				rooms[0][11] = "unavailable"
-		if roomtime[1] == 2:
-			if roomtime[6] == 9:
-				rooms[1][0] = "unavailable"
-				if roomtime[7] == 10:
-					rooms[1][1] = "unavailable"
-			if roomtime[6] == 10:
-				rooms[1][1] = "unavailable"
-				if roomtime[7] == 11:
-					rooms[1][2] = "unavailable"
-			if roomtime[6] == 11:
-				rooms[1][2] = "unavailable"
-				if roomtime[7] == 12:
-					rooms[1][3] = "unavailable"
-			if roomtime[6] == 12:
-				rooms[1][3] = "unavailable"
-				if roomtime[7] == 13:
-					rooms[1][4] = "unavailable"
-			if roomtime[6] == 13:
-				rooms[1][4] = "unavailable"
-				if roomtime[7] == 14:
-					rooms[1][5] = "unavailable"
-			if roomtime[6] == 15:
-				rooms[1][5] = "unavailable"
-				if roomtime[7] == 16:
-					rooms[1][6] = "unavailable"
-			if roomtime[6] == 16:
-				rooms[1][6] = "unavailable"
-				if roomtime[7] == 17:
-					rooms[1][7] = "unavailable"
-			if roomtime[6] == 17:
-				rooms[1][7] = "unavailable"
-				if roomtime[7] == 18:
-					rooms[1][8] = "unavailable"
-			if roomtime[6] == 18:
-				rooms[1][8] = "unavailable"
-				if roomtime[7] == 19:
-					rooms[1][9] = "unavailable"
-			if roomtime[6] == 19:
-				rooms[1][9] = "unavailable"
-				if roomtime[7] == 20:
-					rooms[1][10] = "unavailable"
-			if roomtime[6] == 20:
-				rooms[1][10] = "unavailable"
-				if roomtime[7] == 21:
-					rooms[1][11] = "unavailable"
-			if roomtime[7] == 21:
-				rooms[1][11] = "unavailable"
-		if roomtime[1] == 3:
-			if roomtime[6] == 9:
-				rooms[2][0] = "unavailable"
-				if roomtime[7] == 10:
-					rooms[2][1] = "unavailable"
-			if roomtime[6] == 10:
-				rooms[2][1] = "unavailable"
-				if roomtime[7] == 11:
-					rooms[2][2] = "unavailable"
-			if roomtime[6] == 11:
-				rooms[2][2] = "unavailable"
-				if roomtime[7] == 12:
-					rooms[2][3] = "unavailable"
-			if roomtime[6] == 12:
-				rooms[2][3] = "unavailable"
-				if roomtime[7] == 13:
-					rooms[2][4] = "unavailable"
-			if roomtime[6] == 13:
-				rooms[2][4] = "unavailable"
-				if roomtime[7] == 14:
-					rooms[2][5] = "unavailable"
-			if roomtime[6] == 15:
-				rooms[2][5] = "unavailable"
-				if roomtime[7] == 16:
-					rooms[2][6] = "unavailable"
-			if roomtime[6] == 16:
-				rooms[2][6] = "unavailable"
-				if roomtime[7] == 17:
-					rooms[2][7] = "unavailable"
-			if roomtime[6] == 17:
-				rooms[2][7] = "unavailable"
-				if roomtime[7] == 18:
-					rooms[2][8] = "unavailable"
-			if roomtime[6] == 18:
-				rooms[2][8] = "unavailable"
-				if roomtime[7] == 19:
-					rooms[2][9] = "unavailable"
-			if roomtime[6] == 19:
-				rooms[2][9] = "unavailable"
-				if roomtime[7] == 20:
-					rooms[2][10] = "unavailable"
-			if roomtime[6] == 20:
-				rooms[2][10] = "unavailable"
-				if roomtime[7] == 21:
-					rooms[2][11] = "unavailable"
-			if roomtime[7] == 21:
-				rooms[2][11] = "unavailable"
-		if roomtime[1] == 4:
-			if roomtime[6] == 9:
-				rooms[3][0] = "unavailable"
-				if roomtime[7] == 10:
-					rooms[3][1] = "unavailable"
-			if roomtime[6] == 10:
-				rooms[3][1] = "unavailable"
-				if roomtime[7] == 11:
-					rooms[3][2] = "unavailable"
-			if roomtime[6] == 11:
-				rooms[3][2] = "unavailable"
-				if roomtime[7] == 12:
-					rooms[3][3] = "unavailable"
-			if roomtime[6] == 12:
-				rooms[3][3] = "unavailable"
-				if roomtime[7] == 13:
-					rooms[3][4] = "unavailable"
-			if roomtime[6] == 13:
-				rooms[3][4] = "unavailable"
-				if roomtime[7] == 14:
-					rooms[3][5] = "unavailable"
-			if roomtime[6] == 15:
-				rooms[3][5] = "unavailable"
-				if roomtime[7] == 16:
-					rooms[3][6] = "unavailable"
-			if roomtime[6] == 16:
-				rooms[3][6] = "unavailable"
-				if roomtime[7] == 17:
-					rooms[3][7] = "unavailable"
-			if roomtime[6] == 17:
-				rooms[3][7] = "unavailable"
-				if roomtime[7] == 18:
-					rooms[3][8] = "unavailable"
-			if roomtime[6] == 18:
-				rooms[3][8] = "unavailable"
-				if roomtime[7] == 19:
-					rooms[3][9] = "unavailable"
-			if roomtime[6] == 19:
-				rooms[3][9] = "unavailable"
-				if roomtime[7] == 20:
-					rooms[3][10] = "unavailable"
-			if roomtime[6] == 20:
-				rooms[3][10] = "unavailable"
-				if roomtime[7] == 21:
-					rooms[3][11] = "unavailable"
-			if roomtime[7] == 21:
-				rooms[3][11] = "unavailable"
-		if roomtime[1] == 5:
-			if roomtime[6] == 9:
-				rooms[4][0] = "unavailable"
-				if roomtime[7] == 10:
-					rooms[4][1] = "unavailable"
-			if roomtime[6] == 10:
-				rooms[4][1] = "unavailable"
-				if roomtime[7] == 11:
-					rooms[4][2] = "unavailable"
-			if roomtime[6] == 11:
-				rooms[4][2] = "unavailable"
-				if roomtime[7] == 12:
-					rooms[4][3] = "unavailable"
-			if roomtime[6] == 12:
-				rooms[4][3] = "unavailable"
-				if roomtime[7] == 13:
-					rooms[4][4] = "unavailable"
-			if roomtime[6] == 13:
-				rooms[4][4] = "unavailable"
-				if roomtime[7] == 14:
-					rooms[4][5] = "unavailable"
-			if roomtime[6] == 15:
-				rooms[4][5] = "unavailable"
-				if roomtime[7] == 16:
-					rooms[4][6] = "unavailable"
-			if roomtime[6] == 16:
-				rooms[4][6] = "unavailable"
-				if roomtime[7] == 17:
-					rooms[4][7] = "unavailable"
-			if roomtime[6] == 17:
-				rooms[4][7] = "unavailable"
-				if roomtime[7] == 18:
-					rooms[4][8] = "unavailable"
-			if roomtime[6] == 18:
-				rooms[4][8] = "unavailable"
-				if roomtime[7] == 19:
-					rooms[4][9] = "unavailable"
-			if roomtime[6] == 19:
-				rooms[4][9] = "unavailable"
-				if roomtime[7] == 20:
-					rooms[4][10] = "unavailable"
-			if roomtime[6] == 20:
-				rooms[4][10] = "unavailable"
-				if roomtime[7] == 21:
-					rooms[4][11] = "unavailable"
-			if roomtime[7] == 21:
-				rooms[4][11] = "unavailable"
+	rooms = checkAvailabilities.checkAvailabilities(date)
 
 
 	if request.method == 'POST':
 		if request.form.getlist('chosenTime'):
-			print("chosenTime")
 			chosenTime = request.form.getlist('chosenTime')
-			print(chosenTime)
 			endTime = int(chosenTime[-1])
 			startTime = int(chosenTime[0])
 			roomId = request.form.getlist('room')
-			block = endTime - startTime
+			block = endTime + 1 - startTime
 			if block < 3:
 				if month == 'september':
-					month = '09'
+					m = '09'
 				if month == 'october':
-					month = '10'
+					m = '10'
 				if month == 'november':
-					month = '11'
+					m = '11'
 				if month == 'december':
-					month = '12'
+					m = '12'
 				if month == 'january':
-					month = '01'
+					m = '01'
 				if month == 'february':
-					month = '02'
+					m = '02'
 				if month == 'march':
-					month = '03'
+					m = '03'
 				if month == 'april':
-					month = '04'
+					m = '04'
 				if month == 'may':
-					month = '05'
+					m = '05'
 				if month == 'june':
-					month = '06'
+					m = '06'
 				if month == 'july':
-					month = '07'
+					m = '07'
 				if month == 'august':
-					month = '08'
+					m = '08'
 				if day < 10:
-					date = '2016-'+month+'-0'+day
-					print(date)
+					date = '2016-'+m+'-0'+day
 				else:
-					date = '2016-'+month+'-'+day
-				room = Room(roomId[0],False)
+					date = '2016-'+m+'-'+day
+
 				block = block + 1
-				if registry.initiateAction(room.getId()):
-					#Instantiate parameters
-					user = UserMapper.find(session['userId'])
-					timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,block, user.getId())
+				description = request.form['description']
+				processed_description = description.upper()
+				user = UserMapper.find(session['userId'])
+				if checkAvailabilities.validateAvailability(roomId[0],date,startTime, endTime):
+					room = Room(roomId[0],False)
+					if registry.initiateAction(room.getId()):
+						#Instantiate parameters
+						timeSlot = TimeslotMapper.makeNew(startTime,endTime,date,block, user.getId())
+						TimeslotMapper.save(timeSlot)
+						timeslotId = TimeslotMapper.findId(user.getId())
+						timeSlot.setId(timeslotId)
+						#Make Reservation
+						reservation = ReservationMapper.makeNewReservation(room, user, timeSlot, processed_description,timeslotId)
+						ReservationMapper.save(reservation)
+						registry.endAction(room.getId())
+						return redirect(url_for('dashboard', user=session['user']))
+				else:
+					room = Room(roomId[0], False)
+					timeSlot = TimeslotMapper.makeNew(startTime, endTime, date, block, user.getId())
 					TimeslotMapper.save(timeSlot)
 					timeslotId = TimeslotMapper.findId(user.getId())
 					timeSlot.setId(timeslotId)
-					description = request.form['description']
-					processed_description = description.upper()
-					#Make Reservation
-					reservation = ReservationMapper.makeNewReservation(room, user, timeSlot, processed_description,timeslotId)
-					ReservationMapper.save(reservation)
-				registry.endAction(room.getId())
+					waiting = WaitingMapper.makeNew(room,description,user,timeSlot)
+					WaitingMapper.save(waiting)
+					return redirect(url_for('dashboard', user=session['user']))
 	return render_template('add.html',rooms=rooms)
 
 # annee mois jour

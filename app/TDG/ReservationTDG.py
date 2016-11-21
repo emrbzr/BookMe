@@ -21,6 +21,7 @@ def insert(reservation):
 	description = reservation.getDescription()
 	holder = reservation.getUser().getId()
 	timeslot = reservation.getTimeslot().getId()
+	print(timeslot)
 	cur.execute("""INSERT INTO reservationTable(room, description, holder, timeslot) VALUES
 		(%s, %s, %s, %s);""", (room, description, holder, timeslot))
 
@@ -77,4 +78,26 @@ def findAll():
 	# returns row as list
 	return data
 
-	
+def findUserRes(userId):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+							port="5432")
+	cur = conn.cursor()
+	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable
+    		ON (reservationTable.timeslot = timeslotTable.timeid) WHERE userid = %s;""", (userId,))
+	data = cur.fetchall()
+
+	conn.close()
+	return data
+
+
+def insertDirect(room, description, holder, timeslot):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+							port="5432")
+	cur = conn.cursor()
+
+
+	cur.execute("""INSERT INTO reservationTable(room, description, holder, timeslot) VALUES
+		(%s, %s, %s, %s);""", (room, description, holder, timeslot))
+
+	conn.commit()
+	conn.close()

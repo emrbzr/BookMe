@@ -8,7 +8,7 @@ import TimeslotMapper
 
 
 def makeNew(room, description, reservee, timeslot):
-    waiting = Waiting(room, reservee, timeslot, description)
+    waiting = Waiting(room, reservee, timeslot, description,0)
     WaitingIdMap.add(waiting)
     UnitOfWork.registerNew(waiting)
     return waiting
