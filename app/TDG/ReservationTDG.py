@@ -101,3 +101,14 @@ def insertDirect(room, description, holder, timeslot):
 
 	conn.commit()
 	conn.close()
+
+def findDateRoom(roomId, date):
+	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+							port="5432")
+	cur = conn.cursor()
+	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable
+        		ON (reservationTable.timeslot = timeslotTable.timeid) WHERE room = %s AND date = %s;""", (roomId,date))
+	data = cur.fetchall()
+
+	conn.close()
+	return data

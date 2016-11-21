@@ -91,6 +91,7 @@ def dashboard(user):
 	reservation1 = []
 	userReservation = ReservationTDG.findUserRes(session['userId'])
 
+
 	for reservation in userReservation:
 		print(reservation)
 		reservation1.append(reservation[1])
@@ -100,7 +101,21 @@ def dashboard(user):
 		reservation1.append(reservation[8])
 		reservation1.append(reservation[2])
 		reservation1.append(reservation[0])
-	return render_template('index.html',user=user, reservation=reservation1)
+
+	waitings1 = []
+	userWaiting = WaitingTDG.findByUser(session['userId'])
+
+	for waitingRes in userWaiting:
+		print(reservation)
+		waitings1.append(waitingRes[1])
+		waitings1.append(waitingRes[6])
+		endTime = waitingRes[7] + 1
+		waitings1.append(endTime)
+		waitings1.append(waitingRes[8])
+		waitings1.append(waitingRes[3])
+		waitings1.append(waitingRes[0])
+
+	return render_template('index.html',user=user, reservation=reservation1, waitings=waitings1)
 
 
 @app.route('/cancel/<reservationId>')
@@ -111,7 +126,6 @@ def cancel(reservationId):
 	registry.getReservationBook().setReservationList(ReservationMapper.findAll())
 	registry.getReservationBook().setWaitingList(WaitingMapper.findAll())
 	reservation = ReservationTDG.find(reservationId)
-	print(reservation)
 	roomId = reservation[0][1]
 	print(reservation[0][4])
 	timeslot = TimeslotTDG.find(reservation[0][4])
@@ -132,8 +146,41 @@ def cancel(reservationId):
 		update.updateWaiting(roomId, timeslot[0][3], roomsAvailable[3])
 	if(roomId == 5):
 		update.updateWaiting(roomId, timeslot[0][3], roomsAvailable[4])
-
 	return redirect(url_for('dashboard', user=session['user']))
+
+@app.route('/cancelWaiting/<waitingId>')
+@login_required
+@nocache
+def canceWaiting(waitingId):
+	timesslotId = WaitingTDG.findTimeslot(waitingId)
+	print(timesslotId[0][0])
+	WaitingTDG.delete(waitingId)
+	TimeslotTDG.delete(timesslotId[0][0])
+	return redirect(url_for('dashboard', user=session['user']))
+
+
+@app.route('/modify/<reservationId>')
+@login_required
+@nocache
+def modify(reservationId):
+	registry.getDirectory().setRoomList(RoomMapper.findAll())
+	registry.getReservationBook().setReservationList(ReservationMapper.findAll())
+	registry.getReservationBook().setWaitingList(WaitingMapper.findAll())
+	reservation = ReservationTDG.find(reservationId)
+	#fetch room
+	roomId = reservation[0][1]
+	#fetch date
+	timeslot = TimeslotTDG.find(reservation[0][4])
+	date = timeslot[0][3]
+
+	#query
+	allResDateRoom = ReservationTDG.findDateRoom(roomId,date)
+
+	rTime = checkAvailabilities.checkModifyAvail(allResDateRoom)
+
+	return render_template('modify.html', rTime=rTime)
+
+
 
 
 @app.route('/month')
