@@ -158,8 +158,7 @@ def canceWaiting(waitingId):
 	TimeslotTDG.delete(timesslotId[0][0])
 	return redirect(url_for('dashboard', user=session['user']))
 
-
-@app.route('/modify/<reservationId>')
+@app.route('/modify/<reservationId>',methods=['GET', 'POST'])
 @login_required
 @nocache
 def modify(reservationId):
@@ -172,15 +171,15 @@ def modify(reservationId):
 	#fetch date
 	timeslot = TimeslotTDG.find(reservation[0][4])
 	date = timeslot[0][3]
-
 	#query
 	allResDateRoom = ReservationTDG.findDateRoom(roomId,date)
-
 	rTime = checkAvailabilities.checkModifyAvail(allResDateRoom)
-
-	return render_template('modify.html', rTime=rTime)
-
-
+	if request.method == 'POST':
+		allTime = request.form.getlist('time')
+		block = allTime[1] - allTime[0]
+		TimeslotTDG.update(timeslot[0][0],allTime[0],allTime[1],allTime[0][3],block)
+		return redirect(url_for('dashboard', user=session['user']))
+	return render_template('modify.html', reservationId=reservationId)
 
 
 @app.route('/month')
