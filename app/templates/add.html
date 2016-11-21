@@ -23,7 +23,7 @@
                         <a href="{{ url_for('dashboard',user=session['user']) }}">My Profile</a>
                     </div>
                     <div class="col-md-6 text-center">
-                        <a href="/logout">Logout : Emir</a>
+                        <a href="/logout">Logout</a>
                     </div>
                 </div>
             </div>
@@ -39,91 +39,87 @@
         <div class="panel panel-default">
           <div id="month" class="panel-body">
               <div id="relax" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">&nbsp;</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal1">Room 1</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal2">Room 2</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal3">Room 3</div>
-              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center" data-toggle="modal" data-target="#modal4">Room 4</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal1">Room 1</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal2">Room 2</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal3">Room 3</div>
+              <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center " data-toggle="modal" data-target="#modal4">Room 4</div>
               <div class="clickable col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" data-toggle="modal" data-target="#modal5">Room 5</div>
               <!-- NOTE : WE WILL ONLY MAKE ROOM AVAILABILITY COLUMNS DYNAMIC. TIME COLUMN CAN BE HARD CODED. AND NO NEED TO GET THE VALUE
               BECAUSE WE WILL GET THE TIME VALUE IN THE MODAL PAGE(AKA POPUP) YOU CAN DELETE THIS COMMENT AFTER YOUR READ IT HYJAZ LOL-->
+
+
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 09.00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][0] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][0] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][0] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][0] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][0] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 10:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][1] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][1] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][1] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][1] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][1] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 11:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][2] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][2] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][2] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][2] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][2] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 12:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][3] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][3] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][3] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][3] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][3] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 13:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][4] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][4] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][4] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][4] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][4] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 14:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][5] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][5] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][5] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][5] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][5] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 15:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][6] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][6] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][6] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][6] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][6] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 16:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][7] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][7] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][7] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][7] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][7] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 17:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][8] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][8] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][8] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][8] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][8] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 18:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][9] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][9] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][9] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][9] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][9] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 19:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][10] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][10] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][10] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][10] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][10] }}</div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 20:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Time: 21:00</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room1 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room2 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room3 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">Room4 Availability</div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">Room5 Availability</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[0][11] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[1][11] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[2][11] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 divider text-center">{{ rooms[3][11] }}</div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{ rooms[4][11] }}</div>
           </div>
         </div>
       </div>
@@ -201,8 +197,9 @@
           $(this).css("color", "#333333");
         });
       });
-      $(".killer").click(function(){
-        alert("You Are Successful!!");
+
+      $('div.number').click(function() {
+          var number = parseInt($('.number').text());
       });
       var s, m, i;
       var interval
@@ -248,6 +245,9 @@
           $(this).css("background", "#FFFFFF");
           $(this).css("color", "#333333");
         });
+$('sub').click(function(){
+    location.reload();
+});
         $("#relax").mouseleave(function(){
           $(this).css("background", "#FFFFFF");
           $(this).css("color", "#333333");

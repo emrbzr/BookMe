@@ -25,11 +25,11 @@ def registerDirty(object):
     changedList.append(object)
 
 def registerDeleted(object):
-    deletedList.add(object)
+    deletedList.append(object)
 
 
 
-def commit(self):
+def commit():
 
     for index, object in enumerate(newList):
         if type(object) is User:
@@ -61,11 +61,11 @@ def commit(self):
         if type(object) is Room:
             RoomMapper.erase(object)
         if type(object) is Reservation:
-            ReservationMapper.erase(object)
+            ReservationMapper.erase(object.getId())
         if type(object) is Waiting:
             WaitingMapper.erase(object)
         if type(object) is Timeslot:
-            TimeslotMapper.erase(object)
+            TimeslotMapper.erase(object.getId())
 
     del newList[:]
     del changedList[:]
