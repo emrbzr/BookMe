@@ -1,13 +1,16 @@
-from app.TDG import ReservationTDG
-from app.core.reservation import Reservation
+import UnitOfWork
 import ReservationIdMap
+
+from app.TDG import ReservationTDG
+from app.TDG import TimeslotTDG
 from app.TDG import RoomTDG
 from app.TDG import UserTDG
-from app.TDG import TimeslotTDG
+
 from app.core.room import Room
 from app.core.user import User
 from app.core.timeslot import Timeslot
-import UnitOfWork
+from app.core.reservation import Reservation
+
 
 def makeNewReservation(room,holder,time,description,reservationId):
     reservation = Reservation(room, holder,time,description,reservationId)

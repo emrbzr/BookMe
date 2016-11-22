@@ -1,9 +1,5 @@
 from app.TDG import WaitingTDG
-from app.TDG import ReservationTDG
-from app.core.reservation import Reservation
-from app.mapper import UserMapper
-from app.mapper import RoomMapper
-from app.mapper import TimeslotMapper
+from app.TDG import ReservationTDGs
 
 #waitingList: list containing (waitingId, room, reservee, description, timeslotid, starttime, endtime) entries
 #availabilityList: availabilities for that room (array of strings)

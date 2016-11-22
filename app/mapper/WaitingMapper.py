@@ -1,11 +1,12 @@
-from app.TDG import WaitingTDG
-from app.core.waiting import Waiting
 import UnitOfWork
 import WaitingIdMap
 import RoomMapper
 import UserMapper
 import TimeslotMapper
 
+from app.TDG import WaitingTDG
+
+from app.core.waiting import Waiting
 
 def makeNew(room, description, reservee, timeslot):
     waiting = Waiting(room, reservee, timeslot, description,0)

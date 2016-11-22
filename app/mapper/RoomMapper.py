@@ -1,7 +1,10 @@
-from app.TDG import RoomTDG
-from app.core.room import Room
-import RoomIdMap
 import UnitOfWork
+import RoomIdMap
+
+from app.TDG import RoomTDG
+
+from app.core.room import Room
+
 
 def makeNew(roomId, lock):
     room = Room(roomId, lock)
