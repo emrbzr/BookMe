@@ -86,6 +86,10 @@
     <script src="../static/javascript/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(function(){
+          $(document).ready(function() {
+
+            $("#month .divider").css("background-color", "white");
+        });
         $("#month .divider").mouseenter(function(){
           $(this).css("background", "#93DC69");
           $(this).css("color", "white");
@@ -101,7 +105,7 @@
         if($(this).html() == "1" || "2" || "3" || "4" || "5" || "6" || "7"|| "8" || "9"|| "10" || "11" || "12" || "13" || "14" || "15" || "16" || "17" || "18" || "19" || "20" || "21" || "22" || "23" || "24" || "25" || "26" || "27" || "28" || "29" || "30")
         {
            day = $(this).html()
-          window.location.href = "/december/" + day;
+          window.location.href = "/september/" + day;
         }
       });
     </script>

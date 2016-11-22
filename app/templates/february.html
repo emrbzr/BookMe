@@ -85,6 +85,10 @@
     <script src="../static/javascript/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(function(){
+          $(document).ready(function() {
+
+            $("#month .divider").css("background-color", "white");
+        });
         $("#month .divider").mouseenter(function(){
           $(this).css("background", "#93DC69");
           $(this).css("color", "white");
