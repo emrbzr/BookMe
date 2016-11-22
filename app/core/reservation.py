@@ -1,7 +1,3 @@
-from room import Room
-from user import User
-from timeslot import Timeslot
-
 # Reservation object
 class Reservation:
 

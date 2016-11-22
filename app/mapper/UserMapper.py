@@ -1,8 +1,10 @@
+import UserIdMap
+import UnitOfWork
+
 from app.TDG import UserTDG
+
 from app.core.user import User
 
-import UnitOfWork
-import UserIdMap
 
 
 def __init__():

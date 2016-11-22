@@ -1,8 +1,10 @@
-from app.TDG import TimeslotTDG
-from app.core.timeslot import Timeslot
-import UnitOfWork
 import TimeslotIdMap
+import UnitOfWork
+
 from app.TDG import TimeslotTDG
+
+from app.core.timeslot import Timeslot
+
 
 def makeNew(st, et, date,block, userId):
     timeslot = Timeslot(st, et, date,block, userId)
