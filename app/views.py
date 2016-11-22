@@ -259,28 +259,40 @@ def addNewReservation(month,day):
 
 	if month == 'september':
 		m = '09'
+		redirectTo = "september.html"
 	if month == 'october':
 		m = '10'
+		redirectTo = "october.html"
 	if month == 'november':
 		m = '11'
+		redirectTo = "november.html"
 	if month == 'december':
 		m = '12'
+		redirectTo = "december.html"
 	if month == 'january':
 		m = '01'
+		redirectTo = "january.html"
 	if month == 'february':
 		m = '02'
+		redirectTo = "february.html"
 	if month == 'march':
 		m = '03'
+		redirectTo = "march.html"
 	if month == 'april':
 		m = '04'
+		redirectTo = "april.html"
 	if month == 'may':
 		m = '05'
+		redirectTo = "may.html"
 	if month == 'june':
 		m = '06'
+		redirectTo = "june.html"
 	if month == 'july':
 		m = '07'
+		redirectTo = "july.html"
 	if month == 'august':
 		m = '08'
+		redirectTo = "august.html"
 	if int(day) < 10:
 		date = '2016-' + m + '-0' + day
 	else:
@@ -306,7 +318,7 @@ def addNewReservation(month,day):
 						for timeslots in userTimeslots:
 							if str(timeslots[3]) == str(date):
 								print(timeslots[3])
-								return render_template('month.html', allowed = "You can only have 1 reservation per day")
+								return render_template(redirectTo, allowed = "You can only have 1 reservation per day")
 						room = Room(roomId[0], False)
 						if registry.initiateAction(room.getId()):
 							# Instantiate parameters
