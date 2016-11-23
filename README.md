@@ -29,10 +29,10 @@ $ brew install postgresql<br />
 $ python run.py <br />
 
 <h6>The following are the credentials to login:</h6>
- UserId: 1, Username: John, Password:pass < br />
- UserId: 2, Username: Emily, Password:pass < br />
- UserId: 3, Username: Rudy, Password:pass < br />
- UserId: 4, Username: Jackie, Password:pass < br />
+ UserId: 1, Username: John, Password:pass <br />
+ UserId: 2, Username: Emily, Password:pass <br />
+ UserId: 3, Username: Rudy, Password:pass <br />
+ UserId: 4, Username: Jackie, Password:pass <br />
 
 ## Team Members
 
