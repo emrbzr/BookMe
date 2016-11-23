@@ -2,9 +2,9 @@
 import psycopg2
 from psycopg2.extensions import AsIs
 
-
+postgreSQLpass = "Intel1234"
 def find(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT * FROM timeslotTable WHERE timeid = %s;""", (id,))
@@ -14,7 +14,7 @@ def find(id):
 	return data
 
 def findUser(userid):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 
@@ -24,7 +24,7 @@ def findUser(userid):
 	# returns table row as list
 	return data
 def insert(timeslot):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	startTime = timeslot.getStartTime()
@@ -39,7 +39,7 @@ def insert(timeslot):
 	conn.close()
 
 def update(id, st, et, date, block):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE timeslotTable SET startTime = %s, endTime = %s,
@@ -48,7 +48,7 @@ def update(id, st, et, date, block):
 	conn.close()
 
 def delete(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""DELETE FROM timeslotTable WHERE timeid = %s;""", (id,))

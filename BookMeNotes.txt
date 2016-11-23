@@ -5,8 +5,8 @@ BookMe Notes:
 - The app was not thoroughly tested. Thus, it may contains unexpected bugs or crashes.
 - The classes and methods mentioned in the SAD are implemented.
 - Max duration of the reservation is 2 hours.
-- Max number of reservations per day is 1.
-- Max number of reservation per week is 5.
+- Max number of reservations per day is 1 for 2 hours.
+- Max number of reservation per week is 5 totaling for 10 hours.
 - Although the waiting list can get updated and the user gets the reservation, 
   the user is not removed from any and all other waiting lists on any other room that 
   has been reserved over the same time slot. However, this is not an issue as 

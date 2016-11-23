@@ -95,7 +95,9 @@ CREATE TABLE IF NOT EXISTS reservationTable (
 
 INSERT INTO userTable(password, name) VALUES
 	('pass','John'),
-	('pass','Emily');
+	('pass','Emily'),
+	('pass','Rudy'),
+	('pass','Jackie');
 
 
 INSERT INTO roomTable(roomId) VALUES

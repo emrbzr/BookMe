@@ -1,10 +1,10 @@
 #RoomTDG
 import psycopg2
-from psycopg2.extensions import AsIs
 
 
+postgreSQLpass = "Intel1234"
 def find(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass , host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT * FROM roomTable WHERE roomId = %s;""", (id,))
@@ -14,7 +14,7 @@ def find(id):
 	return data
 
 def findAll():
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT * FROM roomTable;""")
@@ -24,7 +24,7 @@ def findAll():
 	return data
 
 def insert(room):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	lock = room.getLock()
@@ -35,7 +35,7 @@ def insert(room):
 	conn.close()
 
 def update(id, availability):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE roomTable SET roomLock = %s 
@@ -44,7 +44,7 @@ def update(id, availability):
 	conn.close()
 
 def delete(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""DELETE FROM roomTable WHERE userId = %s;""", (id,))

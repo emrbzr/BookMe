@@ -2,9 +2,9 @@
 import psycopg2
 from psycopg2.extensions import AsIs
 
-
+postgreSQLpass = "Intel1234"
 def find(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT * FROM reservationTable WHERE reservationId = %s;""", (id,))
@@ -14,7 +14,7 @@ def find(id):
 	return data
 
 def insert(reservation):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	room = reservation.getRoom().getId()
@@ -29,7 +29,7 @@ def insert(reservation):
 	conn.close()
 
 def update(id, roomId, userId, description, timeslot):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE reservationTable SET room = %s, holder = %s, 
@@ -39,7 +39,7 @@ def update(id, roomId, userId, description, timeslot):
 	conn.close()
 
 def delete(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	print(id)
 	cur.execute("""DELETE FROM reservationTable WHERE reservationId = %s;""", (id,))
@@ -48,7 +48,7 @@ def delete(id):
 
 
 def findByDate(date):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable
 		ON (reservationTable.timeslot = timeslotTable.timeid) WHERE date = %s;""", (date,))
@@ -58,7 +58,7 @@ def findByDate(date):
 	return data
 
 def findByUserId(userId):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""SELECT * FROM reservationTable WHERE holder = %s;""", (userId,))
@@ -68,7 +68,7 @@ def findByUserId(userId):
 	return data
 
 def findAll():
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 
@@ -79,7 +79,7 @@ def findAll():
 	return data
 
 def findUserRes(userId):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable
@@ -91,7 +91,7 @@ def findUserRes(userId):
 
 
 def insertDirect(room, description, holder, timeslot):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 
@@ -103,7 +103,7 @@ def insertDirect(room, description, holder, timeslot):
 	conn.close()
 
 def findDateRoom(roomId, date):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 	cur.execute("""SELECT * FROM reservationTable LEFT OUTER JOIN timeslotTable

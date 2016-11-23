@@ -105,7 +105,6 @@ def dashboard(user):
 	userWaiting = WaitingTDG.findByUser(session['userId'])
 
 	for waitingRes in userWaiting:
-		print(reservation)
 		waitings1.append(waitingRes[1])
 		waitings1.append(waitingRes[6])
 		endTime = waitingRes[7] + 1
@@ -178,13 +177,17 @@ def modify(reservationId):
 		block = int(allTime[1]) + 1 - int(allTime[0])
 		starttime = int(allTime[0])
 		endtime = int(allTime[1])
-		print(timeslot[0][0])
-		print(timeslot[0][3])
-		print(starttime)
-		print(endtime)
-		print(block)
-		TimeslotTDG.update(timeslot[0][0],starttime,endtime,timeslot[0][3],block)
-		return redirect(url_for('dashboard', user=session['user']))
+		block = endtime + 1 - starttime
+		if block < 3:
+			print(timeslot[0][0])
+			print(timeslot[0][3])
+			print(starttime)
+			print(endtime)
+			print(block)
+			TimeslotTDG.update(timeslot[0][0],starttime,endtime,timeslot[0][3],block)
+			return redirect(url_for('dashboard', user=session['user']))
+		else:
+			return redirect(url_for('dashboard', user=session['user'] ))
 	return render_template('modify.html', rooms=rTime)
 
 
@@ -312,13 +315,18 @@ def addNewReservation(month,day):
 				user = UserMapper.find(session['userId'])
 				if checkAvailabilities.validateAvailability(roomId[0],date,startTime, endTime):
 					userTimeslots = TimeslotTDG.findUser(user.getId())
+					checkBlock = 0
 					print(userTimeslots)
 					if userTimeslots:
 						print("userTimeslots:")
 						for timeslots in userTimeslots:
-							if str(timeslots[3]) == str(date):
+							checkBlock = checkBlock + timeslots[2] + 1 - timeslots[1]
+						for timeslots in userTimeslots:
+							print("checkBlock:")
+							print (checkBlock)
+							if str(timeslots[3]) == str(date) and checkBlock >1:
 								print(timeslots[3])
-								return render_template(redirectTo, allowed = "You can only have 1 reservation per day")
+								return render_template(redirectTo, allowed = "You can only have a reservation that totals to 2 hours per day")
 						room = Room(roomId[0], False)
 						if registry.initiateAction(room.getId()):
 							# Instantiate parameters

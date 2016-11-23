@@ -1,5 +1,5 @@
 from app.TDG import WaitingTDG
-from app.TDG import ReservationTDGs
+from app.TDG import ReservationTDG
 
 #waitingList: list containing (waitingId, room, reservee, description, timeslotid, starttime, endtime) entries
 #availabilityList: availabilities for that room (array of strings)

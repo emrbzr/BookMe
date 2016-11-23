@@ -2,9 +2,9 @@
 import psycopg2
 from psycopg2.extensions import AsIs
 
-
+postgreSQLpass = "Intel1234"
 def find(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT * FROM waitingTable WHERE waitingId = %s """, (id,))
@@ -14,7 +14,7 @@ def find(id):
 	return data
 
 def insert(waiting):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	room = waiting.getRoom()
@@ -34,7 +34,7 @@ def insert(waiting):
 	conn.close()
 
 def update(id, roomId, userId, description, timeslotId):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""UPDATE waitingTable SET room = %s, reservee = %s, 
@@ -44,7 +44,7 @@ def update(id, roomId, userId, description, timeslotId):
 	conn.close()
 
 def delete(id):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 
 	cur.execute("""DELETE FROM waitingTable WHERE waitingId = %s;""", (id,))
@@ -53,7 +53,7 @@ def delete(id):
 
 
 def findAll():
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 	cur.execute("""SELECT * FROM waitingTable """)
@@ -63,7 +63,7 @@ def findAll():
 	return data
 
 def findByRoom(roomId, date):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1", port="5432")
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1", port="5432")
 	cur = conn.cursor()
 	
 	cur.execute("""SELECT waitingId, room, reservee, description, timeslot, startTime, endTime FROM waitingTable LEFT OUTER JOIN timeslotTable
@@ -74,7 +74,7 @@ def findByRoom(roomId, date):
 	return data
 
 def findTimeslot(waitingId):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 
@@ -86,7 +86,7 @@ def findTimeslot(waitingId):
 
 
 def findByUser(userId):
-	conn = psycopg2.connect(database="development", user="postgres", password="Intel1234", host="127.0.0.1",
+	conn = psycopg2.connect(database="development", user="postgres", password=postgreSQLpass, host="127.0.0.1",
 							port="5432")
 	cur = conn.cursor()
 

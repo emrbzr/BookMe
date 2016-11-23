@@ -1,48 +1,39 @@
-# SOEN 343 Project
+# SOEN 343 Project - 
+<h1>Capstone Room Reservation</h1>
 
 This is the repository that contains the code, documentation, issues and much more related to reserving a classroom for a school project.
 <br />
 
-<h1>How to setup Flask</h1>
--Download the latest python3.5 version<br />
--follow this <a href="http://flask.pocoo.org/docs/0.11/installation/">Flask installation</a><br />
+<h1>Instructions to setup the environment</h1>
+-Checkout and pull master
+-Download and install <a href="https://www.python.org/download/releases/2.7/">python2.7</a> version 2.7.12 under the downloads tab<br />
+-Follow the instructions at the following <a href="http://flask.pocoo.org/docs/0.11/installation/">link</a> to succesfully download and install Flask</a><br/> 
 
-Finally to activate the venv:<br />
-cd to project directory<br />
-source venv/bin/activate<br />
-pip install the necessary modules: <br />
-$ pip install flask flask-security flask-sqlalchemy<br />
-<h2>Database guide</h2>
-Install <a href="https://www.postgresql.org/download/">postgresql</a><br />
-install psycopg2 on the venv, the installation of this depends on your os<br />
-<h3>Mac osX</h3>
+-pip install the necessary modules mentionned in the requirements text file <br />
+<h3>Instruction to install modules</h3>
+$ pip install flask flask-security flask-sqlalchemy psycopg2 ... <br />
+
+<h3>Instructions to setup database</h3>
+<h6>Directly from their website</h6>
+Download and install the latest version of <a href="https://www.postgresql.org/download/">postgresql</a><br />
+<h6>Using the terminal for Mac</h6>
 install <a href="http://brew.sh/">brew</a>
 insert the following command on your terminal: <br />
 $ brew install postgresql<br />
-then in your venv enter the following command on your terminal:<br />
-$ pip install psycopg2 <br />
 
-<h3>Windows</h3>
-go into the project directory<br />
-cd venv/lib/python3.5/site-packages <br />
-pip install psycopg2-2.6.1-cp35-none-win32.whl<br />
-
-<h3>Create reservation database through the postgresl GUI</h3>
-Insert user and pass seperate by ":" -> app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost/development'<br />
-$ python<br />
-\>\>\> from app import db<br />
-\>\>\> db.create_all()<br />
+-Create a database named development
+-Copy the sql script under bookMeDB.sql from the root directory and paste in the query tools
+-Change the passwords inside of the TDGs to the password of your postgresql chosen password
+-In the config python file insert your password where it says sqlPass 
 
 <h2>To start server</h2>
-$ python app.py <br />
-
-<h2>to deactivate server</h2>
-$ deactivate <br />
+$ python run.py <br />
+>
 
 ## Team Members
 
-Ahmad Hyjaz Loudin <br />
-Emir Bozer <br />
-Leo Yu <br />
-Nikolas De vigne Blanchet<br />
-Mary Psaroudis<br />
+Ahmad Hyjaz Loudin - @PuzzlinPuzzle<br />
+Emir Bozer @emrbzr<br />
+Leo Yu @yleo<br />
+Nikolas De vigne Blanchet @nvdb <br />
+Mary Psaroudis @mary86<br />
