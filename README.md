@@ -1,5 +1,4 @@
-# SOEN 343 Project - 
-<h1>Capstone Room Reservation</h1>
+# SOEN 343 Project - Capstone Room Reservation
 
 This is the repository that contains the code, documentation, issues and much more related to reserving a classroom for a school project.
 <br />
@@ -21,10 +20,10 @@ install <a href="http://brew.sh/">brew</a>
 insert the following command on your terminal: <br />
 $ brew install postgresql<br />
 
--Create a database named development
--Copy the sql script under bookMeDB.sql from the root directory and paste in the query tools
--Change the passwords inside of the TDGs to the password of your postgresql chosen password
--In the config python file insert your password where it says sqlPass 
+-Create a database named development <br />
+-Copy the sql script under bookMeDB.sql from the root directory and paste in the query tools <br />
+-Change the passwords inside of the TDGs to the password of your postgresql chosen password <br />
+-In the config python file insert your password where it says sqlPass<br />
 
 <h2>To start server</h2>
 $ python run.py <br />
@@ -32,7 +31,7 @@ $ python run.py <br />
 
 ## Team Members
 
-Ahmad Hyjaz Loudin - @PuzzlinPuzzle<br />
+Ahmad Hyjaz Loudin - @PuzzlingPuzzle<br />
 Emir Bozer @emrbzr<br />
 Leo Yu @yleo<br />
 Nikolas De vigne Blanchet @nvdb <br />
