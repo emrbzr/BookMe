@@ -27,12 +27,11 @@ $ brew install postgresql<br />
 
 <h2>To start server</h2>
 $ python run.py <br />
->
 
 ## Team Members
 
-Ahmad Hyjaz Loudin - @PuzzlingPuzzle<br />
+Ahmad Hyjaz Loudin - @PuzzlePuzzling<br />
 Emir Bozer @emrbzr<br />
 Leo Yu @yleo<br />
-Nikolas De vigne Blanchet @nvdb <br />
+Nikolas De vigne Blanchet @ndvb <br />
 Mary Psaroudis @mary86<br />
