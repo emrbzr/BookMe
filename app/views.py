@@ -258,6 +258,8 @@ def chooseMonth(month):
 		return render_template('month.html', currentmonth="You can only reserve rooms for the current month")
 
 @app.route('/<month>/<day>',methods=['GET','POST'])
+@login_required
+@nocache
 def addNewReservation(month,day):
 
 	if month == 'september':
